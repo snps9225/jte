@@ -1,5 +1,5 @@
 
-void call(Map args, Closure body){
+void call(Map args){
 
   // check required parameters
   if (!args.url || !args.cred)
@@ -19,10 +19,6 @@ void call(Map args, Closure body){
         sh "set +x && git clone ${env.git_url_with_creds}"
         dir(repo){
           sh "git checkout ${args.branch ?: "master"}"
-          push = "push"
-          body.resolveStrategy = Closure.DELEGATE_FIRST
-          body.delegate = this
-          body.run()
         }
       }
     }
