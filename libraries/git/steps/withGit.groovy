@@ -14,7 +14,17 @@ void call(){
     """
 
    steps {
-      git credentialsId: '${cred}', url: '${url}'
+        withCredentials([usernamePassword(credentialsId: cred, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+        repo = url.split("/").last() - ".git"
+        withEnv(["git_url_with_creds=${url.replaceFirst("://","://${USER}:${PASS}@")}"]) {
+        node {
+        sh "rm -rf ${repo}"
+        sh "set +x && git clone ${env.git_url_with_creds}"
+        dir(repo){
+          sh "git checkout"
+          }
+      }
+    }
    }
   }
 }
