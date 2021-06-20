@@ -14,7 +14,7 @@ void call(){
     """
 */
    steps {
-      sh "git credentialsId: \'\${cred}\', url: \'\${url}\'"
+      git credentialsId: '${cred}', url: '${url}'
    }
   }
 }
