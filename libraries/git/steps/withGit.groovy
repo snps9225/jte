@@ -5,16 +5,16 @@ void call(){
   String cred = config.git_cred
   
   // check required parameters
-  if (!url || !cred)
+ /* if (!url || !cred)
     error """
     withGit syntax error.
     Input Parameters:
       url: https git url to repository (required)
       cred: jenkins credential ID for github. (required)
     """
-
+*/
    steps {
-      sh "git credentialsId: '${cred}', url: '${url}'"
+      sh "git credentialsId: \'\${cred}\', url: \'\${url}\'"
    }
   }
 }
