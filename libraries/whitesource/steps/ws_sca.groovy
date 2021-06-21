@@ -2,6 +2,10 @@ void call(){
     node{
 		
     	stage("WhiteSource: Download WS Agent"){
+		String product = config.ws_product
+                String project = config.ws_project
+                String options = config.ws_cli
+
 		String configs = resource(config.ws_config)
 	
 		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
@@ -14,9 +18,6 @@ void call(){
 	}
 
 	stage("WhiteSource: Run Unified Agent"){
-                String product = config.ws_product
-                String project = config.ws_project
-		String options = config.ws_cli
 
     		withCredentials([string(credentialsId: 'api_key', variable: 'api_key'), string(credentialsId: 'user_key', variable: ' user_key')]) {
         		sh "java -jar wss-unified-agent.jar -apiKey 'api_key' -userKey 'user_key' -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./.${options}"
