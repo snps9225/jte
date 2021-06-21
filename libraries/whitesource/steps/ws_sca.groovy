@@ -9,7 +9,7 @@ void call(){
 		println "Config is: ${configs}"
 		sh "echo \"Test Script 2\" > config"
 		sh "ls -la"  	
-		sh "echo ${configs} >> config"
+		sh "echo \"${configs}\" >> config"
 		println "Contents of config: "
 		sh "cat config"
 		println "SCA of ${product}/${project} from WS library"
