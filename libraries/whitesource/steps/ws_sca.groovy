@@ -12,7 +12,7 @@ void call(){
 		sh "cat config"
 		println "SCA of ${product}/${project} from WS library"i
 
-		println "sh ./wss_agent.sh -apiKey -userKey -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./. ${options}"
+		println "s ./wss_agent.sh -apiKey -userKey -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./. ${options}"
     	}
     }
 }
