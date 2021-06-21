@@ -6,7 +6,7 @@ void call(){
         	String project = config.ws_project
 		String configs = resource(config.ws_config)
 		String options = config.ws_cli
-		String agent   = resource(wss_agent)
+		String agent   = resource("wss_agent")
 	
 		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
   		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss-unified-agent.config > wss-unified-agent.config'
