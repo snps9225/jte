@@ -6,7 +6,6 @@ void call(){
         	String project = config.ws_project
 		String configs = resource(config.ws_config)
 		String options = config.ws_cli
-		String agent   = resource("wss_agent.txt")
 	
 		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
   		//sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss-unified-agent.config > wss-unified-agent.config'
@@ -18,10 +17,10 @@ void call(){
 	}
 
 	stage("WhiteSource: Run Unified Agent"){
-		println "Agent: ${agent}"
-		sh "echo \"${agent}\" > wss_agent.sh"
-    		//sh "chmod +x ./wss_agent.sh"
-		println "s ./wss_agent.sh -apiKey -userKey -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./. ${options}"
-    	}
+		//println "s ./wss_agent.sh -apiKey -userKey -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./. ${options}"
+    		withCredentials([string(credentialsId: api_key, variable: api_key), string(credentialsId: user_key, variable: user_key)]) {
+        		sh "java -jar wss-unified-agent.jar -apiKey \"${api_key}\" -userKey \"${user_key}\" -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./.${options}"
+    			}
+	}
     }
 }
