@@ -15,13 +15,12 @@ void call(){
 		//sh "echo \"${configs}\" >> wss-unified-agent.config"
 		//sh "cat wss-unified-agent.config"
 		println "SCA of ${product}/${project}:"
+	
+		withCredentials([string(credentialsId: 'api_key', variable: 'api_key'), string(credentialsId: 'user_key', variable: ' user_key')]) {
+                        sh "java -jar wss-unified-agent.jar -apiKey 'api_key' -userKey 'user_key' -product WhiteSource_Test -project Test_jenkins -wss.url https://app.whitesourcesoftware.com/agent -d ./.${options}"
+                        }
+
 	}
 
-	stage("WhiteSource: Run Unified Agent"){
-
-    		withCredentials([string(credentialsId: 'api_key', variable: 'api_key'), string(credentialsId: 'user_key', variable: ' user_key')]) {
-        		sh "java -jar wss-unified-agent.jar -apiKey 'api_key' -userKey 'user_key' -product WhiteSource_Test -project Test_jenkins -wss.url https://app.whitesourcesoftware.com/agent -d ./.${options}"
-    			}
-	}
     }
 }
