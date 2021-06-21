@@ -7,8 +7,9 @@ void call(){
 		String configs = resource(config.ws_config)
 	
 		//sh "echo ${resource(config.ws_config)}"
+		println "Config is: ${configs}"
 		sh "echo \"Test Script 2\" > config"  	
-		sh "cat ${configs}  >> config"
+		//sh "cat ${configs}  >> config"
 		println "Contents of config: "
 		sh "cat config"
 		println "SCA of ${product}/${project} from WS library"
