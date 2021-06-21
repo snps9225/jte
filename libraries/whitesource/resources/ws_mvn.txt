@@ -1,0 +1,4 @@
+maven.runPreStep=true
+updateInventory=true
+includes=**/*.jar
+excludes=**/*wss-unified-agent.jar
