@@ -5,6 +5,6 @@ fields{
   } 
   optional{
 	ws_config = String
-	ws_option = String
+	ws_cli = String
   } 
 }
