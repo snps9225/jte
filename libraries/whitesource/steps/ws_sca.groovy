@@ -10,8 +10,7 @@ void call(){
 		sh "echo \"Test Script: 2\" > config"
 		sh "echo \"${configs}\" >> config"
 		sh "cat config"
-		println "SCA of ${product}/${project} from WS library"i
-
+		println "SCA of ${product}/${project} from WS library"
 		println "s ./wss_agent.sh -apiKey -userKey -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./. ${options}"
     	}
     }
