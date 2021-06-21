@@ -8,12 +8,10 @@ void call(){
 	
 		//sh "echo ${resource(config.ws_config)}"
 		sh "echo \"Test Script 2\" > config"  	
-		//sh "echo \"Test script\" > config1"
-		//sh "cat ${configs}  >> configs1"
+		sh "cat ${configs}  >> config"
 		println "Contents of config: "
 		sh "cat config"
 		println "SCA of ${product}/${project} from WS library"
-		sh 
     	}
     }
 }
