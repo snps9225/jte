@@ -4,7 +4,7 @@ jte{
 
 keywords {
 	master 	= /^[Mm]aster$/
-	develop = /^[Dd]evelop(ment
+	develop = /^[Dd]evelop$/
 	main	= /^[Mm]ain$/
 }
 
