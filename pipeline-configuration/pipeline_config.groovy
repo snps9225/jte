@@ -3,9 +3,9 @@ jte{
 }
 
 keywords {
-	master 	= "/^[Mm]aster$/"
-	develop = "/^[Dd]evelop(ment"
-	main	= "/^[Mm]ain$/"
+	master 	= /^[Mm]aster$/
+	develop = /^[Dd]evelop(ment
+	main	= /^[Mm]ain$/
 }
 
 @merge libraries {
