@@ -5,6 +5,6 @@ fields{
 	Package_Manager = String
   } 
   optional{
-	Custom_ConfigOptions = String
+	Custom_ConfigOptions = ArrayList
   } 
 }
