@@ -1,10 +1,10 @@
 fields{ 
   required{
-	ws_product = String
-	ws_project = String
-	ws_package = String
+	Product = String
+	Project = String
+	Package_Manager = String
   } 
   optional{
-	ws_addConfig = String
+	Custom_ConfigOptions = String
   } 
 }
