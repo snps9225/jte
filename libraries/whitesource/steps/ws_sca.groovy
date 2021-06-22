@@ -1,7 +1,8 @@
 void call(){
-    node{
+    node("SCA"){
 		
     	stage("WhiteSource: Software Composition Analysis"){
+		unstash "workspace"
 		String product = config.Product
                 String project = config.Project
                 String configs = resource(config.Package_Manager)
