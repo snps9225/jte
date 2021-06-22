@@ -6,7 +6,8 @@ libraries {
 	git {
 	   github {
 	      source_type = "github"
-	   } 
+	   }
+	} 
 	maven {
 	   mavenID = "maven"
 	}   
