@@ -1,0 +1,20 @@
+#Whether to send the check policies request before updating WhiteSource.
+checkPolicies=true
+
+#Whether to update organization inventory regardless of policy violations.
+forceUpdate=true
+
+#Whether to send an update request.
+updateInventory=true
+
+#When set to ALL - the Unified Agent will exit on any major error (such as resolution failed, pre-steps error, etc.).
+failErrorLevel=ALL 
+
+#Whether to run npm install or yarn install on found package.json file.
+npm.runPreStep=true
+
+#Whether to ignore errors of the 'npm list' command.
+npm.ignoreNpmLsErrors=true
+
+#The Unified Agent executes npm install --ignore-scripts, and the scripts in your project's package.json file will not be run.
+npm.ignoreScripts=true
