@@ -2,9 +2,9 @@ fields{
   required{
 	ws_product = String
 	ws_project = String
-	ws_config = String
+	ws_package = String
   } 
   optional{
-	ws_cli = String
+	ws_addConfig = String
   } 
 }
