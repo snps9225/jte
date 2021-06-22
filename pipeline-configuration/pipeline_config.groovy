@@ -20,8 +20,8 @@ jte{
 	   mavenID = "maven"
 	}   
 	whitesource {
-	   ws_product = "WhiteSource_Test" 
-	   ws_project = "Test_jenkins"
-	   ws_config  = "ws_mvn.config"
+	   Product = "WhiteSource_Test" 
+	   Project = "Test_jenkins"
+	   Package_Manager = "maven"
     }
 }
