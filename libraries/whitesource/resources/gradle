@@ -1,0 +1,14 @@
+#Whether to send the check policies request before updating WhiteSource.
+checkPolicies=true
+
+#Whether to update organization inventory regardless of policy violations.
+forceUpdate=true
+
+#Whether to send an update request.
+updateInventory=true
+
+#When set to ALL - the Unified Agent will exit on any major error (such as resolution failed, pre-steps error, etc.).
+failErrorLevel=ALL 
+
+#The Unified Agent will add additional jars to the customer's global cache.In most Gradle versions the "gradle dependencies" command we run does this.
+gradle.runPreStep=true
