@@ -1,5 +1,5 @@
 void call(){
-    node("SCA"){
+    node {
 		
     	stage("WhiteSource: Software Composition Analysis"){
 		unstash "workspace"
