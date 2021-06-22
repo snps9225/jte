@@ -3,9 +3,9 @@ jte{
 }
 
 keywords {
-	master 	= "/^[Mm]aster$/"
-	develop = "/^[Dd]evelop(ment"
-	main	= "/^[Mm]ain$/"
+	master 	= /^[Mm]aster$/
+	develop = /^[Dd]evelop(ment
+	main	= /^[Mm]ain$/
 }
 
 @merge libraries {
@@ -17,16 +17,7 @@ keywords {
 	    docker_args = "-u 0:0"
 	  }
         }
-	github {
-	   source_type = "github"
+	git {
+	   github
 	}
-
-	maven {
-	   mavenID = "maven"
-	}   
-	whitesource {
-	   Product = "WhiteSource_Test" 
-	   Project = "Test_jenkins"
-	   Package_Manager = "maven"
-    }
 }
