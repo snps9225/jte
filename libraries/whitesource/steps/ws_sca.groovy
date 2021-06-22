@@ -14,6 +14,8 @@ void call(){
 		sh "chmod +x ./wss-unified-agent.config"
 		sh "echo \"${configs}\" >> wss-unified-agent.config"
 		println "SCA of ${product}/${project}:"
+		//Add additional user supplied config options:
+		//["maven.downloadMissingDependencies=false","maven.projectNameFromDependencyFile=true"] -> wss-unified-agent.config
 	
 		withCredentials([string(credentialsId: 'api_key', variable: 'api_key'), string(credentialsId: 'user_key', variable: ' user_key')]) {
 			sh "java -jar wss-unified-agent.jar -apiKey 'api_key' -userKey 'user_key' -product ${product} -project ${product} -wss.url https://app.whitesourcesoftware.com/agent -d ./. ${options}"
