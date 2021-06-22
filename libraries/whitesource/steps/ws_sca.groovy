@@ -5,18 +5,17 @@ void call(){
 		String product = config.Product
                 String project = config.Project
                 String configs = resource(config.Package_Manager)
-		
 		ArrayList custom_config = config.Custom_ConfigOptions
-	
+		
+		//Download Unified Agent and configuration File
 		//sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
   		//sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss-unified-agent.config > wss-unified-agent.config'
 		
+		//Add Package Manager Configurations
 		sh "chmod +x ./wss-unified-agent.config"
 		sh "echo \"${configs}\" >> wss-unified-agent.config"
-		println "SCA of ${product}/${project}:"
-		//Add additional user supplied config options:
-		//["maven.downloadMissingDependencies=false","maven.projectNameFromDependencyFile=true"] -> wss-unified-agent.config
 		
+		//Add Additional Configurations
 		custom_config.each{
 			sh "echo \"${it}\" >> wss-unified-agent.config"
 		}		
