@@ -5,7 +5,7 @@ node{
   }
 
   on_merge to: master, from: develop, {
-    maven.run(["clean", "install", "skipTests"], profiles: ["integration-test"])
+    maven.run(["clean", "compile"], profiles: ["integration-test"])
     ws_sca()
   }
 }
