@@ -2,6 +2,11 @@ jte{
     allow_scm_jenkinsfile = true
 }
 
+keywords {
+	master 	= /^[Mm]aster$/
+	develop = /^[Dd]evelop(ment
+	main	= /^[Mm]ain$/
+}
 
 @merge libraries {
 	sdp {
