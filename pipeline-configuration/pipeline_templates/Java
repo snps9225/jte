@@ -1,4 +1,6 @@
-on_commit to: develop, {
-    maven.run(["clean", "compile"], profiles: ["integration-test"])
-    whitesource.run("maven")
+node {
+    on_commit to: develop, {
+        maven.run(["clean", "compile"], profiles: ["integration-test"])
+        whitesource.run("maven")
+    }
 }
