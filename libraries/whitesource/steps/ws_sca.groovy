@@ -1,4 +1,7 @@
-void call(){
+void call() {}
+
+whitesource.run(String config_packagemanager) {
+	
     node {
 		
     	stage("WhiteSource: Software Composition Analysis"){
