@@ -1,6 +1,6 @@
 void call() {}
 
-void run(String config_packagemanager) {
+void run(String package_manager) {
 	
     node {
 		
@@ -8,7 +8,7 @@ void run(String config_packagemanager) {
 		unstash "workspace"
 		String product = config.Product
                 String project = config.Project
-                String configs = resource(config.Package_Manager)
+                String configs = resource(package_manager)
 		ArrayList custom_config = config.Custom_ConfigOptions
 		
 		//Download Unified Agent and Configuration File
