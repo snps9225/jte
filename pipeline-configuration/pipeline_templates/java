@@ -1,4 +1,0 @@
-on_commit to: develop, {
-    maven.run(["clean", "compile"])
-    whitesource.run("maven")
-}
