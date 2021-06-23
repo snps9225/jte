@@ -1,6 +1,6 @@
 void call() {}
 
-whitesource.run(String config_packagemanager) {
+void run(String config_packagemanager) {
 	
     node {
 		
