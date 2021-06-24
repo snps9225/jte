@@ -1,29 +1,44 @@
 void call() {
-
 } 
 
 void run(Map params = [:], ArrayList<String> phases) {
     this.run(phases, params.get('goals', []) as ArrayList<String>, params.get('properties', [:]) as Map<String, String>, params.get('profiles', []) as ArrayList<String>)
 }
 
-// Run maven command with maven image pulled from registry
+// Run maven with the image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
        stage("Maven") {  
-		//withCredentials(cred){
-			inside_sdp_image "maven:${config.maven_tag}", {
-			//unstash "workspace"
-			String command = "mvn "
+	        String tag = ""
+	        if (!config.image_tag) {
+        		tag = "3.8.1-openjdk-8"
+    		}
+	        tag = config.image_tag
+		inside_sdp_image "maven:${tag}", {
+		    unstash "workspace"
+		    String command = "mvn "
+		    if (!phases) {
+			error "Must supply phase for Maven"
+		    }
+		    phases.each { phase -> command += "${phase} "}
 
-			  /*  if (!phases) {
-				error "Must supply phase for Maven"
+		    if (goals) {
+			goals.each { goal -> command += "${goal} " }
+		    }
+
+		    if (properties) {
+			properties.each { propertyName, value -> command += "-D${propertyName} "
+			    if (value != null) {
+				command += "= ${value} "
 			    }
-			    phases.each { phase -> command += "${phase} "}
-
-			    if (goals) {
-				goals.each { goal -> command += "${goal} " }
-			    }*/
-			    sh command
 			}
-		//}
+		    }
+
+		    if (profiles) {
+			command += "-P"
+			String joined = profiles.join(",")
+			command += joined
+		    }
+	            sh command
+		}
        }
 }
