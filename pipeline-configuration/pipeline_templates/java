@@ -1,6 +1,6 @@
 node {
     on_commit to: develop, {
-        maven.run(["clean", "compile"])
+        maven.run(["clean", "compile"],properties:["image_tag":"3.8.1""])
         //whitesource.run("maven")
     }
 }
