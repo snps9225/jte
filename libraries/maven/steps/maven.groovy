@@ -23,15 +23,16 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			unstash "workspace"
 			String command = "mvn "
 		    
-		    if (!phases) {
-			error "Must supply phase for Maven"
-		    }
-		    phases.each { phase -> command += "${phase} "}
+			    if (!phases) {
+				error "Must supply phase for Maven"
+			    }
+			    phases.each { phase -> command += "${phase} "}
 
-		    if (goals) {
-			goals.each { goal -> command += "${goal} " }
-		    }
-		    sh command
-        }
-    }
+			    if (goals) {
+				goals.each { goal -> command += "${goal} " }
+			    }
+			    sh command
+			}
+        	}
+    	}
 }
