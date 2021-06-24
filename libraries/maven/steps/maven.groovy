@@ -12,7 +12,9 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 	        if (!config.image_tag) {
         		tag = "3.8.1-openjdk-8"
     		}
-	        tag = config.image_tag
+	        else {       
+	        	tag = config.image_tag
+		}
 		inside_sdp_image "maven:${tag}", {
 		    unstash "workspace"
 		    String command = "mvn "
