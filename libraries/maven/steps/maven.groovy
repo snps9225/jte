@@ -8,8 +8,7 @@ void run(Map params = [:], ArrayList<String> phases) {
 // Run maven with the image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
        stage("Maven: Build") {  
-	        
-	        
+	       	        
 	        String command = "mvn "
 	        String tag = ""
 	       
@@ -43,7 +42,6 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 		}
 	       
 		inside_sdp_image "maven:${tag}", {
-			unstash "workspace"
 	            	sh command
 		}
       }
