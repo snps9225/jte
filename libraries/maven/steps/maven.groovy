@@ -9,7 +9,7 @@ void run(Map params = [:], ArrayList<String> phases) {
 // Run maven command with maven image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
        stage("Maven") {  
-		withCredentials(cred){
+		//withCredentials(cred){
 			inside_sdp_image "maven:${config.maven_tag}", {
 			//unstash "workspace"
 			String command = "mvn "
@@ -24,6 +24,6 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			    }
 			    //sh command
 			}
-		}
+		//}
        }
 }
