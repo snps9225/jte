@@ -23,14 +23,16 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			error "Must supply phase for Maven"
 		}
 		phases.each { phase -> command += "${phase} "}
-		if (goals) {
+		
+	        if (goals) {
 			goals.each { goal -> command += "${goal} " }
 		}
 
 		if (properties) {
 			properties.each { propertyName, value -> command += "-D${propertyName} "
-			if (value != null) {
-				command += "= ${value} "
+				if (value != null) {
+					command += "= ${value} "
+				}
 			}
 		}
 		
