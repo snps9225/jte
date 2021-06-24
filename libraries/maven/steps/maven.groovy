@@ -18,7 +18,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			tag = properties.get('image_tag')
 	    	}
 	       
-	       	withCredentials(creds){
+	       	//withCredentials(creds){
 			inside_sdp_image "maven:${tag}", {
 			unstash "workspace"
 			String command = "mvn "
@@ -33,6 +33,6 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			    }
 			    sh command
 			}
-        	}
+        	//}
     	}
 }
