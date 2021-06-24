@@ -10,9 +10,12 @@ void run(Map params = [:], ArrayList<String> phases) {
 }
 
 // Run maven command with maven image pulled from registry
+// Run maven command with maven image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
-    stage("Maven") {
-	// run mvn command in maven container
-        withCredentials(creds){
-            inside_sdp_image "maven:${tag}", {
-                unstash "workspace"
+        // run mvn command in maven container
+	if (properties) {
+                
+		sh 'echo properties.get('image_tag')'
+		
+            }
+}
