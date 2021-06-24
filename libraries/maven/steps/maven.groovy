@@ -13,7 +13,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 	        String tag = ""
 	       
 	        if (!config.image_tag) {
-        		tag = "3.8.1-openjdk-8"
+        		tag = "3.8.1"
     		}
 	        else {       
 	        	tag = config.image_tag
