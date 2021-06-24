@@ -4,7 +4,7 @@ keywords {
 	main	= /^[Mm]ain$/
 }
 
-@merge libraries {
+/*@merge libraries {
 	sdp {
 	  images {
 	    registry 	= "https://docker.pkg.github.com" //"https://hub.docker.com"
@@ -16,4 +16,4 @@ keywords {
 	git {
 	   github
 	}
-}
+}*/
