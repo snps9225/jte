@@ -7,10 +7,10 @@ keywords {
 @merge libraries {
 	sdp {
 	  images {
-	    registry 	= "https://docker.pkg.github.com" //"https://hub.docker.com"
-	    repository 	= "boozallen/sdp-images" //"karnc/maven:3.8.1-openjdk-8"
-	    cred 	= "public-github"
-	    docker_args = "-u 0:0"
+	    registry 	= "https://hub.docker.com"//"https://docker.pkg.github.com" //
+	    repository 	= "karnc/maven:3.8.1-openjdk-8"//"boozallen/sdp-images" //"karnc/maven:3.8.1-openjdk-8"
+	    //cred 	= "public-github"
+	    //docker_args = "-u 0:0"
 	  }
         }
 	git {
