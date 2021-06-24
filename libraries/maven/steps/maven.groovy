@@ -13,9 +13,9 @@ void run(Map params = [:], ArrayList<String> phases) {
 // Run maven command with maven image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
         // run mvn command in maven container
+	String command = "echo "
 	if (properties) {
-                
-		sh 'echo properties.get('image_tag')'
-		
+		command = properties.get('image_tag')
+		sh command
             }
 }
