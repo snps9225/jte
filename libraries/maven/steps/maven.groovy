@@ -10,19 +10,20 @@ void run(Map params = [:], ArrayList<String> phases) {
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
        stage("Maven") {  
 		withCredentials(cred){
-		inside_sdp_image "maven:${config.maven_tag}", {
-		//unstash "workspace"
-		String command = "mvn "
+			inside_sdp_image "maven:${config.maven_tag}", {
+			//unstash "workspace"
+			String command = "mvn "
 
-		    if (!phases) {
-			error "Must supply phase for Maven"
-		    }
-		    phases.each { phase -> command += "${phase} "}
+			    if (!phases) {
+				error "Must supply phase for Maven"
+			    }
+			    phases.each { phase -> command += "${phase} "}
 
-		    if (goals) {
-			goals.each { goal -> command += "${goal} " }
-		    }
-		    //sh command
+			    if (goals) {
+				goals.each { goal -> command += "${goal} " }
+			    }
+			    //sh command
+			}
 		}
        }
 }
