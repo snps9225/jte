@@ -11,14 +11,17 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 	       	        
 	        String command = "mvn "
 	        String tag = ""
+	        String image_name = "build-tools/maven_"
 	       
 	        if (!config.maven_version) {
         		tag = "3.8.1"
     		}
 	        else {       
 	        	tag = config.maven_version
-			tag = tag.replaceAll("_", ".")
 		}
+	        tag = tag.replaceAll("_", ".")
+	        image_name = image_name+tag 
+	        println image_name
 		if (!phases) {
 			error "Must supply phase for Maven"
 		}
@@ -42,7 +45,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			command += joined
 		}
 	       
-		inside_sdp_image "maven:${tag}", {
+		inside_sdp_image "${image_name}", {
 	            	sh command
 		}
       }
