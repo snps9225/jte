@@ -1,5 +1,5 @@
 fields { 
   optional {
-	  image_tag = String
+	  maven_version = String
   } 
 }
