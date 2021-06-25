@@ -17,7 +17,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
     		}
 	        else {       
 	        	tag = config.maven_version
-			assert tag == tag.replaceAll("_", ".")
+			assert tag.replaceAll(/_/, ".")
 		}
 		if (!phases) {
 			error "Must supply phase for Maven"
