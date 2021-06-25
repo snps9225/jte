@@ -12,11 +12,12 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 	        String command = "mvn "
 	        String tag = ""
 	       
-	        if (!config.image_tag) {
+	        if (!config.maven_version) {
         		tag = "3.8.1"
     		}
 	        else {       
-	        	tag = config.image_tag
+	        	tag = config.maven_version
+			tag = tag.replaceAll(/^_/, ".")
 		}
 		if (!phases) {
 			error "Must supply phase for Maven"
