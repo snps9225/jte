@@ -12,7 +12,9 @@ keywords {
 	    	cred 		= "docker-hub"
 	  	}
         }
-	
+	/*checkmarx {
+		Cx_url = https://
+	}*/
 	git {
 	   github
 	}
