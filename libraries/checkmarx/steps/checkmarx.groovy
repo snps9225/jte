@@ -92,7 +92,7 @@ void run(String lang)
 						if(statusCode==0 || statusCode>5)
 						{
 							//stash includes: '/opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml', name: 'Cxscan'
-							archiveArtifacts artifacts: 'cx_output.xml'
+							archiveArtifacts artifacts: '/opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml'
 						}
 					}
 				}
