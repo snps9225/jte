@@ -2,6 +2,7 @@ fields{
   required {
 	ProjectName = String
 	Language = String
+	CxServer = String
   } 
   optional{
 	Preset = String
