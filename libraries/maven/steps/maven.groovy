@@ -101,6 +101,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo aws_configure_cmd
 			echo aws_codeartifact_cmd
 			echo mvn_command
+			sh mvn_command
 			if(aws_configure_cmd!=null)
 			{
 				//sh aws_configure_cmd
