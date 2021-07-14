@@ -71,7 +71,7 @@ void run(String lang)
 		// Fix the Dockerfile
 		// Archive the results
 		
-         	inside_sdp_image "checkmarx_test:latest", {
+         	inside_sdp_image "checkmarx:latest", {
          	 	
 			dir("${WORKSPACE}")
 			{
