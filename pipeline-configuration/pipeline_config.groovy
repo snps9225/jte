@@ -12,7 +12,7 @@ keywords {
 	    	cred 		= "docker-hub"
 	  	}
         }
-	@merge checkmarx {
+	@override checkmarx {
 		CxServer = "https://checkmarx.corp.n-able.com"
 	}
 	git {
