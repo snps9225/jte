@@ -5,14 +5,14 @@ keywords {
 }
 
 @merge libraries {
-	@override sdp
-	    /*{
-	    images {
-	    registry 	= "https://registry.hub.docker.com"
-	    repository 	= "karnc" 
-	    cred 	= "docker-hub"
-	  }
-        }*/
+	@override sdp {
+		images {
+	    	registry 	= "https://registry.hub.docker.com"
+	    	repository 	= "karnc" 
+	    	cred 		= "docker-hub"
+	  	}
+        }
+	
 	git {
 	   github
 	}
