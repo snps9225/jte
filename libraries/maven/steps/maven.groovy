@@ -71,9 +71,9 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 		}
 
 		if (properties) {
-			properties.each { propertyName, value -> mvn_command += "-D${propertyName} "
+			properties.each { propertyName, value -> mvn_command += "-D${propertyName}"
 				if (value != null) {
-					mvn_command += "= ${value} "
+					mvn_command += "=${value} "
 				}
 			}
 		}
