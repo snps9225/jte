@@ -16,7 +16,7 @@ void run(String lang)
 		String SASTMedium = ""
 		String script = ""
 		String report = "cx_output.xml"
-		String CxServer="https://checkmarx.corp.n-able.com"
+		String CxServer= ""
 		String LocationType="folder"
 		
 		String report_location = "/opt/CxConsolePlugin/Checkmarx/Reports/"
@@ -34,6 +34,12 @@ void run(String lang)
     		}
 		lang = config.Language
 		lang=lang.toLowerCase()
+		
+		if (!config.CxServer) 
+		{
+        		error "Error : Must provide CX Server URL"
+    		}
+		CxServer = config.CxServer
 		
 		preset = choose_preset(lang)
 		if(preset==null)
