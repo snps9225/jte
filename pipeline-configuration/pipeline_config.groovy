@@ -5,7 +5,8 @@ keywords {
 }
 
 @merge libraries {
-	sdp /*{
+	@override sdp
+	    /*{
 	    images {
 	    registry 	= "https://registry.hub.docker.com"
 	    repository 	= "karnc" 
