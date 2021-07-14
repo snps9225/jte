@@ -12,7 +12,7 @@ keywords {
 	    	cred 		= "docker-hub"
 	  	}
         }
-	@override checkmarx {
+	checkmarx {
 		CxServer = "https://checkmarx.corp.n-able.com"
 	}
 	git {
