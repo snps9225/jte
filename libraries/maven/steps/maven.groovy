@@ -96,7 +96,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 		      mvn_command += config.maven.settings+" "
 	       }
 	       
-		inside_sdp_image "maven:latest", {
+		inside_sdp_image "maven:3.8.1", {
 			
 			echo aws_configure_cmd
 			echo aws_codeartifact_cmd
