@@ -100,7 +100,7 @@ String choose_preset(String lang)
 	switch(lang)
 	{
 		case "java":
-			return '\"Checkmarx Default\"'
+			return '\"Java - OWASP Top 10\"'
 		default:
 			return null
 	}
