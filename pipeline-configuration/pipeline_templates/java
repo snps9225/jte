@@ -1,6 +1,10 @@
 node {
     on_commit to: develop, {
-        maven.run(["package"],properties:["skipTests":"true"])
+        maven.run(["clean"],properties:["skipTests":"true"])
+    }
+    
+    on_merge to: master, {
+        maven.run(["clean package"],properties:["skipTests":"true"])
         checkmarx.run("java")
         whitesource.run("maven")
     }
