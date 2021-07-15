@@ -99,8 +99,8 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo aws_codeartifact_cmd
 			echo mvn_command
 			sh mvn_command
-			phases.each {
-				if("${phases}" == "test") {
+			phases.each {  phase ->
+				if(phases == "test") {
 					echo "run JUNIT"
 				}    
 			}
