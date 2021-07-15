@@ -6,8 +6,8 @@ void run(Map params = [:], ArrayList<String> phases) {
 }
 
 // Run maven with the image pulled from registry
-void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
-       stage("Maven: Build") 
+void run(String stageName, ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
+       stage("Maven: " + stagename) 
        {  
 	     	
 	     	// Parsing AWS CodeArtifact	
@@ -59,6 +59,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 		}
 	        tag = tag.replaceAll("\\.", "")
 	        image_name = image_name+tag
+	        println("Image name: ", image_name)
 	        //image_name = "build-tools_maven381"
 		
 	        if (!phases) {
@@ -101,13 +102,15 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo aws_configure_cmd
 			echo aws_codeartifact_cmd
 			echo mvn_command
-			//sh mvn_command
-			if(aws_configure_cmd!=null)
-			{
+			sh mvn_command
+			if(stageName == "test") {
+				//junit testResults: "${mavenProjectName}/target/surefire-reports/*.xml", allowEmptyResults: true
+				println("Print: Running junit test")
+			}
+			if(aws_configure_cmd!=null) {
 				//sh aws_configure_cmd
 			}
-			if(aws_codeartifact_cmd!=null)
-			{
+			if(aws_codeartifact_cmd!=null) {
 				//codeArtifactOutput = sh(script: aws_codeartifact_cmd, returnStdout: true).trim()
 			}
 			
