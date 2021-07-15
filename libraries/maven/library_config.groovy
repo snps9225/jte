@@ -5,6 +5,7 @@ fields {
 	  	version = String
 		settings = String
 		modules = String
+		Stage = String
 	  }
 	  aws
 	  {
