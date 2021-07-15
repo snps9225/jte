@@ -1,10 +1,4 @@
-void call()
-{
-
-}
-
-void run(String lang)
-{
+void call() {
 	stage("Checkmarx : Static Analysis") 
 	{
 
