@@ -5,7 +5,7 @@ node {
     
     on_pull_request to: master, {
         maven.run(["clean package"],properties:["skipTests":"true"])
-        checkmarx.run()
+        checkmarx.run("Java")
         whitesource.run("maven")
     }
         
