@@ -91,10 +91,11 @@ void run(String lang)
 						def statusCode = sh script:script, returnStatus:true
 						//String test = "head -10 /opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml"
 						//sh test
+						sh "cp /opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml ${WORKSPACE}"
 						if(statusCode==0 || statusCode>5)
 						{
 							//stash includes: '/opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml', name: 'Cxscan'
-							archiveArtifacts artifacts: '**/cx_output.xml'
+							archiveArtifacts artifacts: 'cx_output.xml'
 						}
 					}
 				}
