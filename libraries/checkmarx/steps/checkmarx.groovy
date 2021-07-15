@@ -3,7 +3,7 @@ void call() {
 	{
 
 		String project = ""
-		String language = ""
+		String lang = ""
 		String preset = ""
 		String LocationPath= ""
 		String SASTHigh = ""
