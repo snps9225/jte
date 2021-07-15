@@ -7,7 +7,7 @@ void runs(String stageName, ArrayList<String> phases, Map params = [:]) {
 
 // Run maven with the image pulled from registry
 void runs(String stageName, ArrayList<String> phases, Map<String, String> properties, ArrayList<String> goals, ArrayList<String> profiles) {
-       stage("Maven: " + stageName) 
+       stage("Maven: Build") 
        {  
 	     	
 	     	// Parsing AWS CodeArtifact	
