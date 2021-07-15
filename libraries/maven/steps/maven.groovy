@@ -7,11 +7,10 @@ void run(ArrayList<String> phases, Map params = [:]) {
 
 // Run maven with the image pulled from registry
 void run(ArrayList<String> phases, Map<String, String> properties, ArrayList<String> goals, ArrayList<String> profiles) {
-       String stageName = ""
-       stageName = config.maven.Stage	
-       stage("Maven: "+ stageName) 
+       stage("Maven: Build") 
        {  
-	     	
+	     	String stageName = ""
+       		stageName = config.maven.Stage	
 	     	// Parsing AWS CodeArtifact	
 	     	String aws_configure_cmd = null
 	     	String aws_codeartifact_cmd = null 
