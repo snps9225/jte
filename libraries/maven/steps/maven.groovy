@@ -1,10 +1,10 @@
 void call() {
 } 
 void run(Map params = [:], ArrayList<String> phases, String name) {
-    this.run(phases, params.get('goals', []) as ArrayList<String>, params.get('properties', [:]) as Map<String, String>, params.get('profiles', []) as ArrayList<String>)
+    this.run(phases, params.get('goals', []) as ArrayList<String>, params.get('properties', [:]) as Map<String, String>, params.get('profiles', []) as ArrayList<String>, name)
 }
 // Run maven with the image pulled from registry
-void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
+void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles, String name) {
        stage("Maven: Build") 
        {  
 	     	
