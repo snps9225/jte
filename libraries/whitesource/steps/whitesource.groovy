@@ -31,7 +31,7 @@ void run(String package_manager) {
 			script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
 			script = script + ' -wss.url https://app.whitesourcesoftware.com/agent -d ./. -generateScanReport true'
 			def statusCode = sh script:script, returnStatus:true
-			if(statusCode==0 || statusCode>5)
+			if(statusCode==0)
 				{
 					archiveArtifacts artifacts: "**/*scan_report.json"
 				}
