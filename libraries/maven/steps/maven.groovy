@@ -1,16 +1,13 @@
 void call() {
 } 
-
-void run(ArrayList<String> phases, Map params = [:]) {
-    this.run(phases, params.get('properties', [:]) as Map<String, String>, params.get('goals', []) as ArrayList<String>, params.get('profiles', []) as ArrayList<String>)
+void run(Map params = [:], ArrayList<String> phases) {
+    this.run(phases, params.get('goals', []) as ArrayList<String>, params.get('properties', [:]) as Map<String, String>, params.get('profiles', []) as ArrayList<String>)
 }
-
 // Run maven with the image pulled from registry
-void run(ArrayList<String> phases, Map<String, String> properties, ArrayList<String> goals, ArrayList<String> profiles) {
+void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
        stage("Maven: Build") 
        {  
-	     	String stageName = ""
-       		stageName = config.maven.Stage	
+	     	
 	     	// Parsing AWS CodeArtifact	
 	     	String aws_configure_cmd = null
 	     	String aws_codeartifact_cmd = null 
@@ -60,7 +57,6 @@ void run(ArrayList<String> phases, Map<String, String> properties, ArrayList<Str
 		}
 	        tag = tag.replaceAll("\\.", "")
 	        image_name = image_name+tag
-	        println("Image name: ", image_name)
 	        //image_name = "build-tools_maven381"
 		
 	        if (!phases) {
@@ -71,7 +67,6 @@ void run(ArrayList<String> phases, Map<String, String> properties, ArrayList<Str
 	        if (goals) {
 			goals.each { goal -> mvn_command += "${goal} " }
 		}
-
 		if (properties) {
 			properties.each { propertyName, value -> mvn_command += "-D${propertyName}"
 				if (value != null) {
@@ -104,14 +99,12 @@ void run(ArrayList<String> phases, Map<String, String> properties, ArrayList<Str
 			echo aws_codeartifact_cmd
 			echo mvn_command
 			sh mvn_command
-			if(stageName == "test") {
-				//junit testResults: "${mavenProjectName}/target/surefire-reports/*.xml", allowEmptyResults: true
-				println("Print: Running junit ", stageName)
-			}
-			if(aws_configure_cmd!=null) {
+			if(aws_configure_cmd!=null) 
+            {
 				//sh aws_configure_cmd
 			}
-			if(aws_codeartifact_cmd!=null) {
+			if(aws_codeartifact_cmd!=null) 
+            {
 				//codeArtifactOutput = sh(script: aws_codeartifact_cmd, returnStdout: true).trim()
 			}
 			
