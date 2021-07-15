@@ -8,7 +8,7 @@ void run(ArrayList<String> phases, Map params = [:]) {
 // Run maven with the image pulled from registry
 void run(ArrayList<String> phases, Map<String, String> properties, ArrayList<String> goals, ArrayList<String> profiles) {
        String stageName = ""
-       stageName = config.Stage	
+       stageName = config.maven.Stage	
        stage("Maven: "+ stageName) 
        {  
 	     	
