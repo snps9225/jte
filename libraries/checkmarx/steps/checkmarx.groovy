@@ -89,12 +89,11 @@ void run(String lang)
 					{
 						script = script + ' -CxUser '+'\\"'+"$uname"+'\\"'+' -CxPassword '+'\\"'+"$pass"+'\\"'
 						def statusCode = sh script:script, returnStatus:true
-						//String test = "head -10 /opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml"
-						//sh test
-						sh "cp /opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml ${WORKSPACE}"
+						
 						if(statusCode==0 || statusCode>5)
 						{
 							//stash includes: '/opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml', name: 'Cxscan'
+							sh "cp /opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml ${WORKSPACE}"
 							archiveArtifacts artifacts: 'cx_output.xml'
 						}
 					}
