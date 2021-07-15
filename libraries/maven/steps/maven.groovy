@@ -102,7 +102,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			sh mvn_command
 			phases.each {  phase ->
 				if(phase == "test") {
-					echo "run JUNIT"
+					junit testResults: "**/target/surefire-reports/*.xml", allowEmptyResults: true
 				}    
 			}
 			
