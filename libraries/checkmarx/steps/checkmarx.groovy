@@ -3,13 +3,13 @@ void call()
 
 }
 
-void run()
+void run(String lang)
 {
 	stage("Checkmarx : Static Analysis") 
 	{
 
 		String project = ""
-		String lang = ""
+		String language = ""
 		String preset = ""
 		String LocationPath= ""
 		String SASTHigh = ""
