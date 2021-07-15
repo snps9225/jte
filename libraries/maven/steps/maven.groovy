@@ -5,9 +5,9 @@ void run(Map params = [:], ArrayList<String> phases, String name) {
 }
 // Run maven with the image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles, String name) {
-       stage("Maven: Build") 
+       stage("Maven: " + name) 
        {  
-	     	echo name
+	     	
 	     	// Parsing AWS CodeArtifact	
 	     	String aws_configure_cmd = null
 	     	String aws_codeartifact_cmd = null 
@@ -99,12 +99,13 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo aws_codeartifact_cmd
 			echo mvn_command
 			sh mvn_command
-			if(aws_configure_cmd!=null) 
-            {
+			if(name =="test") {
+				echo "run JUNIT"
+			}
+			if(aws_configure_cmd!=null) {
 				//sh aws_configure_cmd
 			}
-			if(aws_codeartifact_cmd!=null) 
-            {
+			if(aws_codeartifact_cmd!=null) {
 				//codeArtifactOutput = sh(script: aws_codeartifact_cmd, returnStdout: true).trim()
 			}
 			
