@@ -7,7 +7,7 @@ void run(Map params = [:], ArrayList<String> phases, String name) {
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles, String name) {
        stage("Maven: Build") 
        {  
-	     	
+	     	echo name
 	     	// Parsing AWS CodeArtifact	
 	     	String aws_configure_cmd = null
 	     	String aws_codeartifact_cmd = null 
