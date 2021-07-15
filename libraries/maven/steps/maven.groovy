@@ -7,7 +7,7 @@ void run(String stageName, Map params = [:], ArrayList<String> phases) {
 
 // Run maven with the image pulled from registry
 void run(String stageName, ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles) {
-       stage("Maven: " + stagename) 
+       stage("Maven: " + stageName) 
        {  
 	     	
 	     	// Parsing AWS CodeArtifact	
@@ -105,7 +105,7 @@ void run(String stageName, ArrayList<String> phases, ArrayList<String> goals, Ma
 			sh mvn_command
 			if(stageName == "test") {
 				//junit testResults: "${mavenProjectName}/target/surefire-reports/*.xml", allowEmptyResults: true
-				println("Print: Running junit test")
+				println("Print: Running junit ", stageName)
 			}
 			if(aws_configure_cmd!=null) {
 				//sh aws_configure_cmd
