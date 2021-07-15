@@ -9,7 +9,7 @@ void run(String package_manager) {
 		String product = config.Product
                 String project = config.Project
                 String configs = resource(package_manager)
-		String script = "java -jar wss-unified-agent.jar"
+		String script = ""
 		ArrayList custom_config = config.Custom_ConfigOptions
 		
 		//Download Unified Agent and Configuration File
@@ -27,8 +27,9 @@ void run(String package_manager) {
 		
 		//Run Unified Agent for SCA
 		withCredentials([string(credentialsId: 'api_key', variable: 'api_key'), string(credentialsId: 'user_key', variable: 'user_key')]) {
-			script = script + " -apiKey " + $api_key " -userKey " + $user_key + " -product " + product + " -project " + project
-			script = script + " -wss.url https://app.whitesourcesoftware.com/agent -d ./. -generateScanReport true"
+			script = 'java -jar wss-unified-agent.jar'
+			script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
+			script = script + ' -wss.url https://app.whitesourcesoftware.com/agent -d ./. -generateScanReport true'
 			def statusCode = sh script:script, returnStatus:true
 			if(statusCode==0 || statusCode>5)
 				{
