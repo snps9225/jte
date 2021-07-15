@@ -100,7 +100,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo mvn_command
 			sh mvn_command
 			phases.each {  phase ->
-				if(phases == "test") {
+				if(phase == "test") {
 					echo "run JUNIT"
 				}    
 			}
