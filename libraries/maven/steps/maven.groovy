@@ -100,13 +100,10 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo aws_codeartifact_cmd
 			echo mvn_command
 			sh mvn_command
-			/*phases.each {  phase ->
-				if(phase == "test") {
-					junit testResults: "/target/surefire-reports/*.xml", allowEmptyResults: true
-				}    
-			}*/
+	
 			if(phases.contains("test")) {
 				echo "Run JUNIT"
+				//junit testResults: "/target/surefire-reports/*.xml", allowEmptyResults: true
 			}
 			
 			if(aws_configure_cmd!=null) {
