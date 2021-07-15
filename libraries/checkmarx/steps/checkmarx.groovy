@@ -3,7 +3,7 @@ void call()
 
 }
 
-void run(String lang)
+void run()
 {
 	stage("Checkmarx : Static Analysis") 
 	{
