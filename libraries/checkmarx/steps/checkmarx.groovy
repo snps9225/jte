@@ -94,7 +94,7 @@ void run(String lang)
 						{
 							//stash includes: '/opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml', name: 'Cxscan'
 							sh "cp /opt/CxConsolePlugin/Checkmarx/Reports/cx_output.xml ${WORKSPACE}"
-							archiveArtifacts artifacts: 'cx_output.xml'
+							archiveArtifacts artifacts: report
 						}
 					}
 				}
