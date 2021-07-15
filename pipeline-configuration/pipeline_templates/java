@@ -1,6 +1,6 @@
 node {
     on_commit to: develop, {
-        maven.run(["test"],properties:["skipTests":"true"],"test")
+        maven.run(["clean"],properties:["skipTests":"true"],"test")
     }
     
     on_pull_request to: master, {
