@@ -57,6 +57,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 		}
 	        tag = tag.replaceAll("\\.", "")
 	        image_name = image_name+tag
+	        echo image_name
 	        //image_name = "build-tools_maven381"
 		
 	        if (!phases) {
