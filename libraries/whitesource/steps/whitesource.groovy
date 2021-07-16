@@ -10,7 +10,11 @@ void run(String package_manager) {
                 String project = config.Project
                 String configs = resource(package_manager)
 		String script = ""
+		Strint ApiKey = ""
+		Strint UserKey = ""
 		ArrayList custom_config = config.Custom_ConfigOptions
+		ApiKey = config.Api_key
+		UserKey = config.User_Key
 		
 		//Download Unified Agent and Configuration File
 		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
@@ -26,7 +30,7 @@ void run(String package_manager) {
 		}		
 		
 		//Run Unified Agent for SCA
-		withCredentials([string(credentialsId: 'api_key', variable: 'api_key'), string(credentialsId: 'user_key', variable: 'user_key')]) {
+		withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
 			script = 'java -jar wss-unified-agent.jar'
 			script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
 			script = script + ' -wss.url https://app.whitesourcesoftware.com/agent -d ./. -generateScanReport true'
