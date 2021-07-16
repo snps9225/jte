@@ -1,10 +1,11 @@
 node {
     on_commit to: develop, {
+        maven.run(["clean package"],properties:["skipTests":"true"],"build")
         whitesource.run("maven")
     }
     
     on_pull_request to: master, {
-        maven.run(["clean package"],properties:["skipTests":"true"])
+        maven.run(["clean package"],properties:["skipTests":"true"],"build")
         checkmarx()
         whitesource.run("maven")
     }
