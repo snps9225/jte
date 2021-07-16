@@ -4,45 +4,51 @@ void run(String package_manager) {
 	
     node {
 		
-    	stage("WhiteSource: Software Composition Analysis"){
+    	stage("WhiteSource: Software Composition Analysis") {
 		unstash "workspace"
-		String product = config.Product
-                String project = config.Project
-                String configs = resource(package_manager)
-		String script = ""
-		String ApiKey = ""
-		String UserKey = ""
-		String WssUrl = ""
+		String product 	= ""
+                String project 	= ""
+                String configs 	= ""
+		String script 	= ""
+		String ApiKey 	= ""
+		String UserKey 	= ""
+		String WssUrl 	= ""
 		ArrayList custom_config = config.Custom_ConfigOptions
-		ApiKey = config.Api_Key
+		product	= config.Product
+		project = config.Project
+		configs = resource(package_manager)
+		ApiKey 	= config.Api_Key
 		UserKey = config.User_Key
-		WssUrl = config.Wss_Url
+		WssUrl 	= config.Wss_Url
 		
-		//Download Unified Agent and Configuration File
-		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
-  		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/raw/master/standAlone/wss-unified-agent.config > wss-unified-agent.config'
+		script = 'java -jar /opt/wss-unified-agent.jar'
 		
-		//Add Package Manager Configurations
-		sh "chmod +x ./wss-unified-agent.config"
-		sh "echo \"${configs}\" >> wss-unified-agent.config"
-		
-		//Add Additional Configurations
-		custom_config.each{
-			sh "echo \"${it}\" >> wss-unified-agent.config"
-		}		
+		inside_sdp_image "whitesource:openjdk-8", {
+			
+			dir("${WORKSPACE}") {
+				//Add Package Manager Configurations
+				//sh "chmod +x ./wss-unified-agent.config"
+				sh "echo \"${configs}\" >> /opt/wss-unified-agent.config"
 
-		//Run Unified Agent for SCA
-		withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
-			script = 'java -jar wss-unified-agent.jar'
-			script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
-			script = script + ' -wss.url ' + WssUrl + ' -d ./. -generateScanReport true'
-			def statusCode = sh script:script, returnStatus:true
-			if(statusCode==0)
-				{
-					archiveArtifacts artifacts: "**/*scan_report.json"
+				//Add Additional Configurations
+				custom_config.each {
+					sh "echo \"${it}\" >> /opt/wss-unified-agent.config"
+				}	
+				
+				withChecks('Whitesource Scan') {
+					//Run Unified Agent for SCA
+					withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
+						script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
+						script = script + ' -wss.url ' + WssUrl + ' -d ./. -generateScanReport true'
+						def statusCode = sh script:script, returnStatus:true
+						if(statusCode==0) {
+							sh "cp **/*scan_report.json ${WORKSPACE}"
+							archiveArtifacts artifacts: "**/*scan_report.json"
+						}
+					}
 				}
-			//sh "java -jar wss-unified-agent.jar -apiKey \"$api_key\" -userKey \"$user_key\" -product ${product} -project ${project} -wss.url https://app.whitesourcesoftware.com/agent -d ./."
-                }
+			}
+		}
 	}
     }
 }
