@@ -21,7 +21,7 @@ void run(String package_manager) {
 		WssUrl 	= config.Wss_Url
 		
 		script = 'java -jar /opt/wss-unified-agent.jar'
-		
+		unstash "workspace"
 		inside_sdp_image "whitesource:openjdk-8", {
 			
 			dir("${WORKSPACE}") {
