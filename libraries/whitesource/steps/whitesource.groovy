@@ -13,7 +13,7 @@ void run(String package_manager) {
 		String ApiKey = ""
 		String UserKey = ""
 		ArrayList custom_config = config.Custom_ConfigOptions
-		ApiKey = config.Api_key
+		ApiKey = config.Api_Key
 		UserKey = config.User_Key
 		
 		//Download Unified Agent and Configuration File
