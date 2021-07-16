@@ -10,8 +10,8 @@ void run(String package_manager) {
                 String project = config.Project
                 String configs = resource(package_manager)
 		String script = ""
-		Strint ApiKey = ""
-		Strint UserKey = ""
+		String ApiKey = ""
+		String UserKey = ""
 		ArrayList custom_config = config.Custom_ConfigOptions
 		ApiKey = config.Api_key
 		UserKey = config.User_Key
