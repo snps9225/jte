@@ -14,9 +14,6 @@ keywords {
         }
 	@merge checkmarx {
 		CxServer = "https://checkmarx.corp.n-able.com"
-		images {
-			cred = "Cx-Access"
-		}
 	}
 	git {
 	   github
