@@ -12,9 +12,15 @@ keywords {
 			cred 		= "docker-hub"
 	  	}
         }
+	
 	@merge checkmarx {
 		CxServer = "https://checkmarx.corp.n-able.com"
 	}
+	
+	@merge whitesource {
+		Api_Key = "api_key"
+	}
+	
 	git {
 	   github
 	}
