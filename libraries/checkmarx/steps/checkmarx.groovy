@@ -80,7 +80,7 @@ void call() {
 				script = script + ' -LocationPath '+'\\"'+ "${WORKSPACE}" +'\\"'
 				withChecks('Checkmarx Scan') 
 				{
-					withCredentials([usernamePassword(credentialsId: '${cred}', passwordVariable: 'pass', usernameVariable: 'uname')]) 
+					withCredentials([usernamePassword(credentialsId: cred, passwordVariable: 'pass', usernameVariable: 'uname')]) 
 					{
 						script = script + ' -CxUser '+'\\"'+"$uname"+'\\"'+' -CxPassword '+'\\"'+"$pass"+'\\"'
 						def statusCode = sh script:script, returnStatus:true
