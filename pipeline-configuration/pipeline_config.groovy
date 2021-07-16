@@ -19,6 +19,7 @@ keywords {
 	
 	@merge whitesource {
 		Api_Key = "api_key"
+		WSS_URL = "https://app.whitesourcesoftware.com/agent"
 	}
 	
 	git {
