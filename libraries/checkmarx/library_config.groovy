@@ -3,6 +3,7 @@ fields{
 	ProjectName = String
 	Language = String
 	CxServer = String
+	CxCred = String  
   } 
   optional{
 	Preset = String
