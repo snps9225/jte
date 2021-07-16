@@ -30,7 +30,7 @@ void run(String package_manager) {
 		}		
 		
 		//Run Unified Agent for SCA
-		withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
+		withCredentials([string(credentialsId: ${ApiKey}, variable: 'api_key'), string(credentialsId: ${UserKey}, variable: 'user_key')]) {
 			script = 'java -jar wss-unified-agent.jar'
 			script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
 			script = script + ' -wss.url https://app.whitesourcesoftware.com/agent -d ./. -generateScanReport true'
