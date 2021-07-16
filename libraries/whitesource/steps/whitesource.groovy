@@ -16,7 +16,7 @@ void run(String package_manager) {
 		ArrayList custom_config = config.Custom_ConfigOptions
 		ApiKey = config.Api_Key
 		UserKey = config.User_Key
-		WSSURL = config.WSS_URL
+		WSSURL = config.Wss_Url
 		
 		//Download Unified Agent and Configuration File
 		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
