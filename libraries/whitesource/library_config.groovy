@@ -4,7 +4,7 @@ fields{
 	Project = String
 	Api_Key = String
 	User_Key = String
-	WSS_URL = String  
+	Wss_Url = String  
   } 
   optional{
 	Custom_ConfigOptions = ArrayList
