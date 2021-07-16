@@ -6,22 +6,19 @@ void run(String package_manager) {
 		
     	stage("WhiteSource: Software Composition Analysis") {
 		unstash "workspace"
-		String product 	= ""
-                String project 	= ""
-                String configs 	= ""
+		String product 	= config.Product
+                String project 	= config.Project
+                String configs 	= resource(package_manager)
 		String script 	= ""
 		String ApiKey 	= ""
 		String UserKey 	= ""
 		String WssUrl 	= ""
 		ArrayList custom_config = config.Custom_ConfigOptions
-		product	= config.Product
-		project = config.Project
-		configs = resource(package_manager)
 		ApiKey 	= config.Api_Key
 		UserKey = config.User_Key
 		WssUrl 	= config.Wss_Url
 		
-		script = "java -jar /opt/wss-unified-agent.jar"
+		script = 'java -jar /opt/wss-unified-agent.jar'
 		sh "echo \"${script}\""
 		echo "Hello " + script
 		
