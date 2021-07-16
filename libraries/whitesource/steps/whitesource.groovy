@@ -28,8 +28,8 @@ void run(String package_manager) {
 		custom_config.each{
 			sh "echo \"${it}\" >> wss-unified-agent.config"
 		}		
-		echo ApiKey
-		echo UserKey
+		sh "echo \"${ApiKey}\"" 
+		sh "echo \"${UserKey}\""
 		//Run Unified Agent for SCA
 		withCredentials([string(credentialsId: $ApiKey, variable: 'api_key'), string(credentialsId: $UserKey, variable: 'user_key')]) {
 			script = 'java -jar wss-unified-agent.jar'
