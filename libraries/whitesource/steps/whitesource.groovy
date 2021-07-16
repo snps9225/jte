@@ -12,9 +12,11 @@ void run(String package_manager) {
 		String script = ""
 		String ApiKey = ""
 		String UserKey = ""
+		String WSSURL = ""
 		ArrayList custom_config = config.Custom_ConfigOptions
 		ApiKey = config.Api_Key
 		UserKey = config.User_Key
+		WSSURL = config.WSS_URL
 		
 		//Download Unified Agent and Configuration File
 		sh 'curl -LO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar > wss-unified-agent.jar'
@@ -33,7 +35,7 @@ void run(String package_manager) {
 		withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
 			script = 'java -jar wss-unified-agent.jar'
 			script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
-			script = script + ' -wss.url https://app.whitesourcesoftware.com/agent -d ./. -generateScanReport true'
+			script = script + ' -wss.url ' + WSSURL + ' -d ./. -generateScanReport true'
 			def statusCode = sh script:script, returnStatus:true
 			if(statusCode==0)
 				{
