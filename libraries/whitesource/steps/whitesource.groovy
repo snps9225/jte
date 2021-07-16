@@ -5,15 +5,17 @@ void run(String package_manager) {
     node {
 		
     	stage("WhiteSource: Software Composition Analysis") {
-		//unstash "workspace"
-		String product 	= config.Product
-                String project 	= config.Project
-                String configs 	= resource(package_manager)
+		String product 	= ""
+                String project 	= ""
+                String configs 	= ""
 		String script 	= ""
 		String ApiKey 	= ""
 		String UserKey 	= ""
 		String WssUrl 	= ""
 		ArrayList custom_config = config.Custom_ConfigOptions
+		product = config.Product
+		project = config.Project
+		configs = resource(package_manager)
 		ApiKey 	= config.Api_Key
 		UserKey = config.User_Key
 		WssUrl 	= config.Wss_Url
@@ -24,7 +26,6 @@ void run(String package_manager) {
 			
 			dir("${WORKSPACE}") {
 				//Add Package Manager Configurations
-				//sh "chmod +x ./wss-unified-agent.config"
 				sh "echo \"${configs}\" >> /opt/wss-unified-agent.config"
 
 				//Add Additional Configurations
