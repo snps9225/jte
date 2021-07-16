@@ -12,6 +12,7 @@ void call() {
 		String report = "cx_output.xml"
 		String CxServer= ""
 		String LocationType="folder"
+		String cred = ""
 		
 		String report_location = "/opt/CxConsolePlugin/Checkmarx/Reports/"
 		
@@ -70,7 +71,7 @@ void call() {
 		
 		// Fix the Dockerfile
 		// Archive the results
-		
+		cred = config.CxCred
          	inside_sdp_image "checkmarx:latest", {
          	 	
 			dir("${WORKSPACE}")
@@ -79,7 +80,7 @@ void call() {
 				script = script + ' -LocationPath '+'\\"'+ "${WORKSPACE}" +'\\"'
 				withChecks('Checkmarx Scan') 
 				{
-					withCredentials([usernamePassword(credentialsId: 'Cx-Access', passwordVariable: 'pass', usernameVariable: 'uname')]) 
+					withCredentials([usernamePassword(credentialsId: '${cred}', passwordVariable: 'pass', usernameVariable: 'uname')]) 
 					{
 						script = script + ' -CxUser '+'\\"'+"$uname"+'\\"'+' -CxPassword '+'\\"'+"$pass"+'\\"'
 						def statusCode = sh script:script, returnStatus:true
