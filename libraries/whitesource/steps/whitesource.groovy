@@ -5,7 +5,7 @@ void run(String package_manager) {
     node {
 		
     	stage("WhiteSource: Software Composition Analysis") {
-		unstash "workspace"
+		//unstash "workspace"
 		String product 	= config.Product
                 String project 	= config.Project
                 String configs 	= resource(package_manager)
