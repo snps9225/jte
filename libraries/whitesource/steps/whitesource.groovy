@@ -22,6 +22,7 @@ void run(String package_manager) {
 		WssUrl 	= config.Wss_Url
 		
 		script = 'java -jar /opt/wss-unified-agent.jar'
+		sh "echo \"${script}\""
 		
 		inside_sdp_image "whitesource:openjdk-8", {
 			
