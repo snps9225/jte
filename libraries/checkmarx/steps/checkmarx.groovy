@@ -72,7 +72,7 @@ void call() {
 		// Fix the Dockerfile
 		// Archive the results
 		cred = config.CxCred
-         	inside_sdp_image "checkmarx:latest", {
+         	inside_sdp_image "checkmarx:openjdk-8", {
          	 	
 			dir("${WORKSPACE}")
 			{
