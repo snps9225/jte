@@ -1,6 +1,6 @@
 node {
     on_commit to: develop, {
-        checkmarx()
+        whitesource.run("maven")
     }
     
     on_pull_request to: master, {
