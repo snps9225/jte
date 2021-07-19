@@ -1,6 +1,6 @@
 node {
     on_commit to: develop, {
-        maven.run(["deploy"],properties:["skipTests":"true","dependency-check.skip":"true","artifact.suffix":"-dev"],"deploy-dev")
+        maven.run(["clean"],properties:["skipTests":"true","dependency-check.skip":"true","artifact.suffix":"-dev"],"deploy-dev")
         whitesource.run("maven")
     }
     
