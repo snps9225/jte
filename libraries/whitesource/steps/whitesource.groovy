@@ -38,6 +38,7 @@ void run(String package_manager) {
 				withChecks('Whitesource Scan') {
 					//Run Unified Agent for SCA
 					withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
+						sh "pwd"
 						script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
 						script = script + ' -wss.url ' + WssUrl + ' -d ./. -generateScanReport true'
 						def statusCode = sh script:script, returnStatus:true
