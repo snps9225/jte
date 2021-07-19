@@ -5,7 +5,8 @@ fields {
 	  	version = String
 		settings = String
 		modules = String
-		Stage = String
+		stage = String
+		artifact_version = String  
 	  }
 	  aws
 	  {
