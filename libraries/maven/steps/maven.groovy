@@ -1,11 +1,11 @@
 void call() {
 } 
-void run(Map params = [:], ArrayList<String> phases, String name) {
-    this.run(phases, params.get('goals', []) as ArrayList<String>, params.get('properties', [:]) as Map<String, String>, params.get('profiles', []) as ArrayList<String>, name)
+void run(Map params = [:], ArrayList<String> phases, String stage_name) {
+    this.run(phases, params.get('goals', []) as ArrayList<String>, params.get('properties', [:]) as Map<String, String>, params.get('profiles', []) as ArrayList<String>, stage_name)
 }
 // Run maven with the image pulled from registry
-void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles, String name) {
-       stage("Maven: " + name) 
+void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles, String stage_name) {
+       stage("Maven: " + stage_name) 
        {  
 	     	
 	     	// Parsing AWS CodeArtifact	
@@ -94,7 +94,12 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 		      mvn_command += config.maven.settings+" "
 	       }
 	       
-		inside_sdp_image "maven:3.8.1", {
+	       if(config.maven.artifact_version && phases.contains("deploy"))
+	       {
+		      mvn_command += "-Dpackage.version=" + config.maven.artifact_version
+	       }
+	       
+	  	inside_sdp_image "maven:3.8.1", {
 			
 			echo aws_configure_cmd
 			echo aws_codeartifact_cmd
