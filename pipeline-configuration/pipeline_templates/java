@@ -1,7 +1,6 @@
 node {
     on_commit to: develop, {
-        maven.run(["clean package"],properties:["skipTests":"true"],"Test")
-        whitesource.run("maven")
+        maven.run(["clean"],properties:["skipTests":"true"],"Test")
     }
     
     on_pull_request to: develop, {
