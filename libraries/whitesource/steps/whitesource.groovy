@@ -39,7 +39,7 @@ void run(String package_manager) {
 					//Run Unified Agent for SCA
 					withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
 						script = script + ' -apiKey ' + "$api_key" + ' -userKey ' + "$user_key" + ' -product ' + product + ' -project ' + project
-						script = script + ' -wss.url ' + WssUrl + ' -d ./. -generateScanReport true'
+						script = script + ' -wss.url ' + WssUrl + '-c /opt/wss-unified-agent.config -d ./. -generateScanReport true'
 						def statusCode = sh script:script, returnStatus:true
 						if(statusCode==0) {
 							sh "cp **/*scan_report.json ${WORKSPACE}"
