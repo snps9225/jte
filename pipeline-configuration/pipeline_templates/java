@@ -4,7 +4,7 @@ node {
         whitesource.run("maven")
     }
     
-    on_pull_request to: master, {
+    on_pull_request to: develop, {
         maven.run(["clean package"],properties:["skipTests":"true"],"build")
         checkmarx()
         whitesource.run("maven")
