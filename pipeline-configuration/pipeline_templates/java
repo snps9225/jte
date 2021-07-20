@@ -10,6 +10,6 @@ node {
     }
         
     on_merge to: master, from: develop, {
-        maven.run(["clean"],properties:["skipTests":"true"],"test")
+        maven.run(["package"],properties:["skipTests":"true"],"Deploy")
     }
 }
