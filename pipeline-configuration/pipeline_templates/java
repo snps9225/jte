@@ -1,15 +1,15 @@
 node {
     on_commit to: develop, {
-        maven.run(["clean"],properties:["skipTests":"true"],"Test")
+        maven.run(["clean"],properties:["skipTests":"true"],"Test-on_commit")
     }
     
     on_pull_request to: develop, {
-        maven.run(["clean package"],properties:["skipTests":"true"],"build")
+        maven.run(["clean package"],properties:["skipTests":"true"],"build-pr")
         checkmarx()
         whitesource.run("maven")
     }
         
     on_merge to: master, from: develop, {
-        maven.run(["package"],properties:["skipTests":"true"],"Deploy")
+        maven.run(["clean"],properties:["skipTests":"true"],"Test-on_merge")
     }
 }
