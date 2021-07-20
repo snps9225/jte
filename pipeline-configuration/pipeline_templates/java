@@ -9,7 +9,7 @@ node {
         whitesource.run("maven")
     }
         
-    on_merge to: master, from: develop, {
+    on_merge to: master, {
         maven.run(["clean"],properties:["skipTests":"true"],"Test-on_merge")
     }
 }
