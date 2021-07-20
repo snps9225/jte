@@ -22,7 +22,10 @@ keywords {
 		Wss_Url = "https://app.whitesourcesoftware.com/agent"
 	}
 	
-	git {
+	/*git {
 	   github_enterprise
-	}
+	}*/
+	github {
+     		source_type = "github"
+  	}
 }
