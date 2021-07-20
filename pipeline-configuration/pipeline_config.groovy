@@ -23,6 +23,7 @@ keywords {
 	}
 	
 	git {
-	   github
+	   github	
+	   github_enterprise
 	}
 }
