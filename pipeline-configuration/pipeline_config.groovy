@@ -23,9 +23,9 @@ keywords {
 	}
 	
 	/*git {
-	   github_enterprise
+	   	github
 	}*/
 	github {
-     		source_type = 'github'
+     		source_type = "github"
   	}
 }
