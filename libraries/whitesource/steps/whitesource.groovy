@@ -4,7 +4,7 @@ void run(String package_manager) {
 	
     node {
 		
-    	stage("WhiteSource: Software Composition Analysis") {
+    	stage("WhiteSource: SCA") {
 		String product 	= ""
                 String project 	= ""
                 String configs 	= ""
