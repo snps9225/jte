@@ -6,8 +6,8 @@ void call() {
 			image_name = config.Image_Name 
 			
 			sh "test -w ./Dockerfile && echo \"Dockerfile exists.\" || echo \"Dockerfile does not exist.\""
-			sh "test -w ./Dockerfile && echo \"USER root\" >> Dockerfile"
-			sh "test -w ./Dockerfile && echo \"RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
+			sh "test -w ./Dockerfile && echo \"\n\nUSER root\" >> Dockerfile"
+			sh "test -w ./Dockerfile && echo \"\n\nRUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
 			
 			/*if(file.exists()) {
 				sh "echo \"A Dockerfile exists.\""
