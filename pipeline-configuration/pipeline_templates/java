@@ -1,5 +1,7 @@
 on_commit to: develop, {
     maven.run(["package"],properties:["skipTests":"true"],"Test-on_commit")
+    checkmarx()
+    whitesource.run("maven")
 }
 
 on_pull_request to: develop, {
