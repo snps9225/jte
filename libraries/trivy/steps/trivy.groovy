@@ -6,7 +6,7 @@ void call() {
 			//Boolean flag = false
 			image_name = config.Image_Name 
 			
-			def statusCode = sh "test -f ./Dockerfile"
+			def statusCode = sh "test -f ./Dockerfilsse"
 			if(statusCode==0) {
 				sh "echo \"A Dockerfile exists.\""
 				sh "echo \"USER root\" >> Dockerfile"
