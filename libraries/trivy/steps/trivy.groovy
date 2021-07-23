@@ -4,11 +4,14 @@ void call() {
 			String image_name = ""
 			String script = "" 
 			image_name = config.Image_Name 
+			script = 'docker build -t ' + image_name + ' .'
 			
-			sh "test -w ./Dockerfile && echo \"Dockerfile exists.\" || echo \"Dockerfile does not exist.\""
-			sh "test -w ./Dockerfile && echo \"\n\nUSER root\" >> Dockerfile"
-			sh "test -w ./Dockerfile && echo \"\nRUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
-			sh "test -w ./Dockerfile && cat Dockerfile"
+			sh "test -w ./Dockerfile2 && echo \"Dockerfile exists.\" || echo \"Dockerfile does not exist.\""
+			sh "test -w ./Dockerfile2 && echo \"\n\nUSER root\" >> Dockerfile"
+			sh "test -w ./Dockerfile2 && echo \"\nRUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
+			sh "test -w ./Dockerfile2 && sh ${script}"
+			
+			
 			/*if(file.exists()) {
 				sh "echo \"A Dockerfile exists.\""
 				sh "echo \"USER root\" >> Dockerfile"
@@ -16,11 +19,10 @@ void call() {
 			}
 			else {
 				sh "echo \"Dockerfile does not exist.\""
-			}*/
+			}
 
-			script = 'docker build -t ' + image_name + ' .'  
-			//sh "cat Dockerfile"
-			//sh script
+			sh "cat Dockerfile"
+			sh script */
 		}
     	}
 }
