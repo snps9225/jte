@@ -1,6 +1,7 @@
 on_commit to: develop, {
+    maven.run(["package"],properties:["skipTests":"true"],"Test-on_commit")
     trivy()
-    /*maven.run(["package"],properties:["skipTests":"true"],"Test-on_commit")
+    /*
     whitesource.run("maven")
     checkmarx() */
 }
