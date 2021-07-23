@@ -1,5 +1,5 @@
 void call() {
-	stage("Checkmarx : Static Analysis") 
+	stage("Checkmarx: SAST") 
 	{
 
 		String project = ""
