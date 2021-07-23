@@ -5,7 +5,7 @@ void call() {
 		boolean flag = false
 		image_name = config.Image_Name 
 
-		dir("${WORKSPACE}") { 
+		//dir("${WORKSPACE}") { 
 
 			sh "[ -f ./Dockerfile ] && echo \"${flag}\"=true && echo \"Dockerfile exists.\""
 
@@ -16,6 +16,6 @@ void call() {
 
 			script = 'docker build -t ' + image_name + ' .'  
 			sh script
-		}
+		//}
     	}
 }
