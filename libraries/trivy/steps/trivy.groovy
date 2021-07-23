@@ -3,11 +3,11 @@ void call() {
 		node {
 			String image_name = ""
 			String script = "" 
-			//Boolean flag = false
+			def filePath = "./Dockerfile"
 			image_name = config.Image_Name 
 			
-			def statusCode = sh "test -f ./Dockerfilsse"
-			if(statusCode==0) {
+			def file = new File(filePath)
+			if(file.exists()) {
 				sh "echo \"A Dockerfile exists.\""
 				sh "echo \"USER root\" >> Dockerfile"
 				sh "echo \"RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
