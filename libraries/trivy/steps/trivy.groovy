@@ -1,5 +1,6 @@
 void call() {
 	stage("Trivy: Image Scan") {
+		node {
 		String image_name = ""
 		String script = "" 
 		Boolean flag = false
@@ -17,5 +18,6 @@ void call() {
 			script = 'docker build -t ' + image_name + ' .'  
 			sh script
 		//}
+		}
     	}
 }
