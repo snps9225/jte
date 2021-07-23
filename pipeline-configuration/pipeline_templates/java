@@ -1,13 +1,13 @@
 on_commit to: develop, {
     maven.run(["package"],properties:["skipTests":"true"],"Test-on_commit")
-    checkmarx()
     whitesource.run("maven")
+    checkmarx()
 }
 
 on_pull_request to: develop, {
     maven.run(["clean package"],properties:["skipTests":"true"],"build-pr")
-    checkmarx()
     whitesource.run("maven")
+    checkmarx()
 }
 
 on_merge to: master, {
