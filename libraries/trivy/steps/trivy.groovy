@@ -7,9 +7,9 @@ void call() {
 			script = 'docker build -t ' + image_name + ' .'
 			
 			sh "test -w ./Dockerfile2 && echo \"Dockerfile exists.\" || echo \"Dockerfile does not exist.\""
-			sh "test -w ./Dockerfile2 && echo \"\n\nUSER root\" >> Dockerfile || echo \"Dockerfile does not exist.\""
-			sh "test -w ./Dockerfile2 && echo \"\nRUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile || echo \"Dockerfile does not exist.\""
-			sh "test -w ./Dockerfile2 && sh ${script} || echo \"Dockerfile does not exist.\""
+			sh "test -w ./Dockerfile2 && echo \"\n\nUSER root\" >> Dockerfile || "
+			sh "test -w ./Dockerfile2 && echo \"\nRUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile || "
+			sh "test -w ./Dockerfile2 && sh ${script} || "
 			
 			
 			/*if(file.exists()) {
