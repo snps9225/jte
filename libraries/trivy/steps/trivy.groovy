@@ -2,7 +2,7 @@ void call() {
 	stage("Trivy: Image Scan") {
 		String image_name = ""
 		String script = "" 
-		boolean flag = false
+		Boolean flag = false
 		image_name = config.Image_Name 
 
 		//dir("${WORKSPACE}") { 
