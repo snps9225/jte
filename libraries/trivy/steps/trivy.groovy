@@ -21,8 +21,8 @@ void call() {
 				sh "echo \"Dockerfile does not exist.\""
 			}
 
-			sh "cat Dockerfile"
-			sh script */
+			sh "cat Dockerfile" */
+			sh script
 		}
     	}
 }
