@@ -5,8 +5,9 @@ void call() {
 			String script = "" 
 			//Boolean flag = false
 			image_name = config.Image_Name 
-
-			if(sh "test -f ./Dockerfile") {
+			
+			def statusCode = sh "test -f ./Dockerfile", returnStatus:true
+			if(statusCode==0) {
 				sh "echo \"A Dockerfile exists.\""
 				sh "echo \"USER root\" >> Dockerfile"
 				sh "echo \"RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
