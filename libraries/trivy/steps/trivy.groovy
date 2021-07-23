@@ -6,7 +6,7 @@ void call() {
 			//Boolean flag = false
 			image_name = config.Image_Name 
 
-			if(sh "[ -f ./Dockerfile ]") {
+			if(sh "test -f ./Dockerfile") {
 				sh "echo \"A Dockerfile exists.\""
 				sh "echo \"USER root\" >> Dockerfile"
 				sh "echo \"RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --exit-code 1 --no-progress /\" >> Dockerfile"
