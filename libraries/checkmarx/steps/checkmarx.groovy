@@ -67,7 +67,7 @@ void call() {
 		script = script + ' -SASTMedium '+'\\"'+SASTMedium+'\\"'
 		script = script + ' -Preset '+ '\\"'+preset+'\\"'
 		script = script + ' -ReportXML '+'\\"'+report+'\\"'
-		//script = script + ' -Incremental'
+		script = script + ' -Incremental'
 		
 		// Fix the Dockerfile
 		cred = config.CxCred
