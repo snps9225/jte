@@ -42,7 +42,7 @@ void run(String package_manager) {
 						script = script + ' -wss.url ' + WssUrl + ' -c /opt/wss-unified-agent.config -d ./. -generateScanReport true'
 						def statusCode = sh script:script, returnStatus:true
 						if(statusCode==0) {
-							sh "cp **/*scan_report.json ${WORKSPACE}"
+							sh "cp ./*scan_report.json ${WORKSPACE}"
 							archiveArtifacts artifacts: "**/*scan_report.json"
 						}
 					}
