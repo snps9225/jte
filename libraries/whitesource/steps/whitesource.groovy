@@ -49,7 +49,7 @@ void run(String package_manager) {
 				}
 			}
 		}
-		//cleanWs()
+		cleanWs()
 	}
     }
 }
