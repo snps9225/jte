@@ -10,9 +10,6 @@ updateInventory=true
 #When set to ALL - the Unified Agent will exit on any major error (such as resolution failed, pre-steps error, etc.).
 failErrorLevel=ALL 
 
-#Whether to run "mvn clean install" command on found pom.xml folder.
-maven.runPreStep=true
-
 #Which files to include/exclude in the scan (file extensions, file names. folder names, etc.).
 includes=**/*.jar
 excludes=**/*wss-unified-agent.jar
