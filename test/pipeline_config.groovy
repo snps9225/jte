@@ -5,14 +5,27 @@ keywords {
 }
 
 @merge libraries {
-	sdp {
-	  images {
-	    registry 	= "https://registry.hub.docker.com"
-	    repository 	= "karnc" 
-	    cred 	= "docker-hub"
-	  }
+	@override sdp {
+		images {
+			registry 	= "https://registry.hub.docker.com"
+			repository 	= "karnc" 
+			cred 		= "docker-hub"
+	  	}
         }
-	git {
-	   github
+	
+	@merge checkmarx {
+		CxServer = "https://checkmarx.corp.n-able.com"
 	}
+	
+	@merge whitesource {
+		Api_Key = "api_key"
+		Wss_Url = "https://app.whitesourcesoftware.com/agent"
+	}
+	
+	/*git {
+	   	github
+	}*/
+	github {
+     		source_type = "github"
+  	}
 }
