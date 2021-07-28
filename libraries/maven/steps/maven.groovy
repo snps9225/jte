@@ -105,7 +105,9 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo aws_codeartifact_cmd
 			echo mvn_command
 			sh mvn_command
-	
+			//Stash logic
+			stash includes: '*.war', name: 'maven_build'
+			
 			if(phases.contains("test")) {
 				echo "Run JUNIT"
 				//junit testResults: "/target/surefire-reports/*.xml", allowEmptyResults: true
