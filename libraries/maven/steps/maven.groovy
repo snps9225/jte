@@ -106,7 +106,7 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			echo mvn_command
 			sh mvn_command
 			//Stash logic
-			stash includes: "target/*.war", name: "maven_build"
+			stash includes: 'target/**.war, target/**.jar', name: 'maven_build'
 			
 			if(phases.contains("test")) {
 				echo "Run JUNIT"
