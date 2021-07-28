@@ -1,4 +1,4 @@
 on_commit to: develop, {
-    maven.run(["clean","package"],properties:["skipTests":"true"],"on_commit-test")
+    maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
     whitesource.run("maven")
 }
