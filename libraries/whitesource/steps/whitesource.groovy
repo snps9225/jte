@@ -23,7 +23,7 @@ void run(String package_manager) {
 		cleanWs()
 		
 		script = 'java -jar /opt/wss-unified-agent.jar'
-		unstash "workspace"
+		//unstash "workspace"
 		inside_sdp_image "whitesource:openjdk-8", {
 			
 			dir("${WORKSPACE}") {
@@ -34,7 +34,7 @@ void run(String package_manager) {
 				custom_config.each {
 					sh "echo \"${it}\" >> /opt/wss-unified-agent.config"
 				}	
-				//unstash name: 'maven_build', allowEmpty: true
+				unstash name: 'maven_build', allowEmpty: true
 				withChecks('Whitesource Scan') {
 					//Run Unified Agent for SCA
 					withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
