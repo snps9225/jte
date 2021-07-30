@@ -17,6 +17,7 @@ void call() {
 			//sh "test -w ./Dockerfile && sh ${script} || echo \"\""
 			sh script
 			sh "test -w ./Dockerfile && mv Dockerfile_copy Dockerfile || echo \"\""
+			sh "docker rmi " + image_name
 			
 			archiveArtifacts artifacts: "**/trivy-result.txt"
 		}
