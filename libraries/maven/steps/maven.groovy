@@ -13,7 +13,9 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 	     	String aws_codeartifact_cmd = null 
 	        String codeArtifactOutput = null
 	  	
-	     	if (config.aws.defaultregion) 
+	        cleanWs()
+	     	
+	        if (config.aws.defaultregion) 
 	     	{
         		aws_configure_cmd = "aws configure set default.region "+config.aws.defaultregion
     		}
