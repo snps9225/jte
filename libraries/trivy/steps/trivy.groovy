@@ -14,11 +14,10 @@ void call() {
 			sh "test -w ./Dockerfile && cp Dockerfile Dockerfile_copy || echo \"Dockerfile does not exist.\""
 			sh "test -w ./Dockerfile && echo \"\n\nUSER root\" >> Dockerfile || echo \"\""
 			sh "test -w ./Dockerfile && echo \"\nRUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --ignore-unfixed --severity HIGH,CRITICAL --format \"${report_format}\" --exit-code \"${break_build}\" --no-progress /\" >> Dockerfile || echo \"\""
-			sh "test -w ./Dockerfile && mv Dockerfile_copy Dockerfile || echo \"\""
 			//sh "test -w ./Dockerfile && sh ${script} || echo \"\""
-
 			sh script
-	
+			sh "test -w ./Dockerfile && mv Dockerfile_copy Dockerfile || echo \"\""
+			
 			archiveArtifacts artifacts: "**/trivy-result.txt"
 		}
     	}
