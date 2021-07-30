@@ -34,7 +34,7 @@ void run(String package_manager) {
 				custom_config.each {
 					sh "echo \"${it}\" >> /opt/wss-unified-agent.config"
 				}	
-				unstash name: 'maven_build', allowEmpty: true
+				unstash name: 'maven_build'
 				withChecks('Whitesource Scan') {
 					//Run Unified Agent for SCA
 					withCredentials([string(credentialsId: ApiKey, variable: 'api_key'), string(credentialsId: UserKey, variable: 'user_key')]) {
