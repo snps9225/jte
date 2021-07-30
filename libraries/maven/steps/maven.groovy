@@ -5,7 +5,7 @@ void run(Map params = [:], ArrayList<String> phases, String stage_name) {
 }
 // Run maven with the image pulled from registry
 void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> properties, ArrayList<String> profiles, String stage_name) {
-	node {
+
 		stage("Maven: " + stage_name) 
 		{  
 
@@ -13,8 +13,6 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 			String aws_configure_cmd = null
 			String aws_codeartifact_cmd = null 
 			String codeArtifactOutput = null
-
-			cleanWs()
 
 			if (config.aws.defaultregion) 
 			{
@@ -128,5 +126,5 @@ void run(ArrayList<String> phases, ArrayList<String> goals, Map<String, String> 
 
 			}
 	     }
-      	}
+    
 }
