@@ -1,5 +1,16 @@
 on_commit {
     maven.run(["clean", "package"],properties:["skipTests":"true"],"on_commit-test")
-    //whitesource.run("maven")
+    whitesource.run("maven")
+    checkmarx()
     trivy()
+}
+
+on_pull_request {
+    //maven.run(["clean"],properties:["skipTests":"true"],"on_pull_request")
+    //checkmarx()
+    //whitesource.run("maven")
+}
+
+on_merge {
+    //maven.run(["clean"],properties:["skipTests":"true"],"on_merge")
 }
