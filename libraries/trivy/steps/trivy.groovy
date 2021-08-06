@@ -4,12 +4,12 @@ void call() {
 			String opt_in	= ""
 			String image_name = ""
 			String script 	= ""
-			String report_format = ""
+			//String report_format = ""
 			int break_build = 0
 			String severity = ""
 			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
-			report_format 	= config.Report_Format
+			//report_format = config.Report_Format
 			break_build	= config.Break_Build
 			severity 	= config.Severity
 			
@@ -20,10 +20,10 @@ void call() {
 					println "No image name was provided. Default image name to be scanned is, " + image_name
 				}
 				
-				if(!config.Report_Format) {
+				/*if(!config.Report_Format) {
 					println "Selected default output result: JSON"
 					report_format = "json"
-				}
+				}*/
 
 				if(!config.Break_Build) {
 					println "Selected default break build setting: Do not break build"
@@ -38,9 +38,9 @@ void call() {
 				script = 'docker build -t ' + image_name + ' .'
 				unstash name: 'maven_build'  
 				sh script
-				sh "/test/trivy image --format \"${report_format}\" -o trivy-scan.json --ignore-unfixed --no-progress --exit-code \"${break_build}\" --severity \"${severity}\" \"${image_name}\""
+				sh "/test/trivy image --format json -o trivy-scan.json --ignore-unfixed --no-progress --exit-code \"${break_build}\" --severity \"${severity}\" \"${image_name}\""
 
-				archiveArtifacts artifacts: "**/trivy-result.txt"
+				archiveArtifacts artifacts: "**/trivy-scan.json"
 			}
 			
 			else
