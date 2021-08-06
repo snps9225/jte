@@ -15,25 +15,24 @@ void call() {
 			
 			if(!config.Opt_In || config.Opt_In.toLowerCase() == 'yes') {
 			
-				if(!config.Report_Format) {
-					report_format = "json"
-
-				}
-
 				if(!config.Image_Name) {
-					println "No image name was provided. Using a default image name."
-					image_name = "vuln-check:test"
-
+					image_name = "vuln-scan:trivy"
+					info "No image name was provided. Default image name to be scanned is, " + image_name
+				}
+				
+				if(!config.Report_Format) {
+					info "Selected default output result: JSON"
+					report_format = "json"
 				}
 
 				if(!config.Break_Build) {
+					info "Selected default break build setting: Do not break build"
 					break_build = 0
-
 				}
 
 				if(!config.Severity) {
+					info "Selected default severity setting: High and Critical"
 					severity = "HIGH,CRITICAL"
-
 				}
 				
 				script = 'docker build -t ' + image_name + ' .'
@@ -45,7 +44,7 @@ void call() {
 			}
 			
 			else
-				println "Trivy Image Scanning was opted out." 
+				info "Trivy Image Scanning was opted out." 
 		}
     	}
 }
