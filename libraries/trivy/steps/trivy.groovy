@@ -31,7 +31,7 @@ void call() {
 
 				}
 
-				if(!config.config.Severity) {
+				if(!config.Severity) {
 					severity = "HIGH,CRITICAL"
 
 				}
