@@ -13,11 +13,11 @@ keywords {
 	  	}
         }
 	
-	@merge checkmarx {
+	checkmarx {
 		CxServer = "https://checkmarx.corp.n-able.com"
 	}
 	
-	@merge whitesource {
+	whitesource {
 		Api_Key = "api_key"
 		Wss_Url = "https://app.whitesourcesoftware.com/agent"
 	}
