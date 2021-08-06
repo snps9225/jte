@@ -4,7 +4,7 @@ keywords {
 	main	= /^[Mm]ain$/
 }
 
-libraries {
+@merge libraries {
 	@override sdp {
 		images {
 			registry 	= "https://registry.hub.docker.com"
