@@ -1,25 +1,51 @@
 void call() {
 	stage("Trivy: Image Scan") {
 		node {
+			String opt_in	= ""
 			String image_name = ""
-			String script = ""
-			String report_format = "table"
+			String script 	= ""
+			String report_format = ""
 			int break_build = 0
-			image_name = config.Image_Name 
-			report_format = config.Report_Format
-			break_build = config.Break_Build
+			String severity = ""
+			opt_in 		= config.Opt_In
+			image_name 	= config.Image_Name 
+			report_format 	= config.Report_Format
+			break_build	= config.Break_Build
+			severity 	= config.Severity
 			
-			script = 'docker build -t ' + image_name + ' . > trivy-result.txt'
+			if(!config.Opt_In || config.Opt_In.toLowerCase() == 'yes') {
 			
-			sh "test -w ./Dockerfile && cp Dockerfile Dockerfile_copy || echo \"Dockerfile does not exist, build will fail.\""
-			sh "test -w ./Dockerfile && echo \"\n\nUSER root\" >> Dockerfile || echo \"\""
-			sh "test -w ./Dockerfile && echo \"\nRUN apk --no-cache add curl && curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin && trivy filesystem --ignore-unfixed --severity HIGH,CRITICAL --format \"${report_format}\" --exit-code \"${break_build}\" --no-progress /\" >> Dockerfile || echo \"\""
-			//sh "test -w ./Dockerfile && sh ${script} || echo \"\""
-			sh script
-			sh "test -w ./Dockerfile && mv Dockerfile_copy Dockerfile || echo \"\""
-			sh "docker rmi " + image_name
+				if(!config.Report_Format) {
+					report_format = "json"
+
+				}
+
+				if(!config.Image_Name) {
+					println "No image name was provided. Using a default image name."
+					image_name = "vuln-check:test"
+
+				}
+
+				if(!config.Break_Build) {
+					break_build = 0
+
+				}
+
+				if(!config.config.Severity) {
+					severity = "HIGH,CRITICAL"
+
+				}
+				
+				script = 'docker build -t ' + image_name + ' .'
+				unstash name: 'maven_build'  
+				sh script
+				sh "/test/trivy image --format \"${report_format}\" -o trivy-scan.json --ignore-unfixed --no-progress --exit-code \"${break_build}\" --severity \"${severity}\" \"${image_name}\""
+
+				archiveArtifacts artifacts: "**/trivy-result.txt"
+			}
 			
-			archiveArtifacts artifacts: "**/trivy-result.txt"
+			else
+				println "Trivy Image Scanning was opted out." 
 		}
     	}
 }
