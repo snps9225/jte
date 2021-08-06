@@ -1,6 +1,12 @@
+import java.util.logging.Logger
+
+
 void call() {
 	stage("Trivy: Image Scan") {
 		node {
+
+			Logger logger = Logger.getLogger("")
+			
 			String opt_in	= ""
 			String image_name = ""
 			String script 	= ""
@@ -44,7 +50,7 @@ void call() {
 			}
 			
 			else
-				info "Trivy Image Scanning was opted out." 
+				logger.info ("Trivy Image Scanning was opted out.") 
 		}
     	}
 }
