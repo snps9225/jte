@@ -4,7 +4,7 @@ keywords {
 	main	= /^[Mm]ain$/
 }
 
-@merge libraries {
+libraries {
 	@override sdp {
 		images {
 			registry 	= "https://registry.hub.docker.com"
@@ -13,11 +13,11 @@ keywords {
 	  	}
         }
 	
-	checkmarx {
+	@merge checkmarx {
 		CxServer = "https://checkmarx.corp.n-able.com"
 	}
 	
-	whitesource {
+	@merge whitesource {
 		Api_Key = "api_key"
 		Wss_Url = "https://app.whitesourcesoftware.com/agent"
 	}
