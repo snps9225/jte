@@ -28,9 +28,8 @@ keywords {
 		@override User_Key = "user_key"
    	}
 
-	@merge trivy {
-        	@override Image_Name  = "vuln-check:image"
-   	}
+	@override trivy
+
 	
 	/*git {
 	   	github
