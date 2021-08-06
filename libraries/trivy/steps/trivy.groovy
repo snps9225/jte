@@ -23,21 +23,21 @@ void call() {
 			
 				if(!config.Image_Name) {
 					image_name = "vuln-scan:trivy"
-					info "No image name was provided. Default image name to be scanned is, " + image_name
+					println "No image name was provided. Default image name to be scanned is, " + image_name
 				}
 				
 				if(!config.Report_Format) {
-					info "Selected default output result: JSON"
+					println "Selected default output result: JSON"
 					report_format = "json"
 				}
 
 				if(!config.Break_Build) {
-					info "Selected default break build setting: Do not break build"
+					println "Selected default break build setting: Do not break build"
 					break_build = 0
 				}
 
 				if(!config.Severity) {
-					info "Selected default severity setting: High and Critical"
+					println "Selected default severity setting: High and Critical"
 					severity = "HIGH,CRITICAL"
 				}
 				
