@@ -1,10 +1,10 @@
 
 fields { 
-    required {
-        Image_Name = String
-    }
     optional {
+        Opt_In      = String
+        Image_Name  = String
         Report_Format = String
+        Severity    = String
         Break_Build = int
     }
 }
