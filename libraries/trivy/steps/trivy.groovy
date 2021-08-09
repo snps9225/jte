@@ -4,12 +4,10 @@ void call() {
 			String opt_in	= ""
 			String image_name = ""
 			String script 	= ""
-			//String report_format = ""
 			int break_build = 0
 			String severity = ""
 			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
-			//report_format = config.Report_Format
 			break_build	= config.Break_Build
 			severity 	= config.Severity
 			
@@ -19,11 +17,6 @@ void call() {
 					image_name = "vuln-scan:trivy"
 					println "No image name was provided. Default image name to be scanned is, " + image_name
 				}
-				
-				/*if(!config.Report_Format) {
-					println "Selected default output result: JSON"
-					report_format = "json"
-				}*/
 
 				if(!config.Break_Build) {
 					println "Selected default break build setting: Do not break build"
