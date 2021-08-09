@@ -31,9 +31,8 @@ void call() {
 				script = 'docker build -t ' + image_name + ' .'
 				unstash name: 'maven_build'  
 				sh script
-				sh "/test/trivy image --format json -o trivy-scan.json --ignore-unfixed --no-progress --exit-code \"${break_build}\" --severity \"${severity}\" \"${image_name}\""
-
-				archiveArtifacts artifacts: "**/trivy-scan.json"
+				//Runs scan here
+				//archiveArtifacts artifacts: "**/trivy-scan.json"
 			}
 			
 			else
