@@ -22,7 +22,7 @@ void call() {
 				//sh "ls -la"
 				//flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
 				
-				flag = sh(script: "test -e Dockerfile", returnStdout: true)
+				flag = sh(script: "test -e Dockerfile && echo \"1\" || echo \"0\"", returnStdout: true)
 				println "value of flag is: "+flag
 				if(flag=="1") {
 					println "Dockerfile exists"
