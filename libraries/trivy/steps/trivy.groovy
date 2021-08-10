@@ -8,53 +8,39 @@ void call() {
 			String severity = ""
 			String test	= ""
 			String flag	= ""
-			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
 			severity 	= config.Severity
 			
-			if(!config.Opt_In || config.Opt_In.toLowerCase() == 'yes') {
-				unstash name: 'maven_build'  
-				//sh "pwd"
-				
-				//flag = sh "find -name Dockerfile"
-				//println "File Present: " + flag
-				//sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
-				//sh "ls -la"
-				//flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
-				test = "test -e Dockerfile && echo \"1\" || echo \"0\""
-				flag = sh(script: test, returnStdout: true).trim()
-				println "value of flag is:"+flag+":"
-				println flag.equals("1\n")
-				if(flag.equals("1\n")) {
-					println "Dockerfile exists"
-				
-					if(!config.Image_Name) {
-						image_name = "vuln-scan:trivy"
-						println "No image name was provided. Default image name to be scanned is, " + image_name
-					}
+			unstash name: 'maven_build' 
 
-					if(!config.Break_Build) {
-						println "Selected default break build setting: Do not break build"
-						break_build = 0
-					}
+			test = "test -e Dockerfile && echo \"1\" || echo \"0\""
+			flag = sh(script: test, returnStdout: true).trim()
 
-					if(!config.Severity) {
-						println "Selected default severity setting: High and Critical"
-						severity = "HIGH,CRITICAL"
-					}
+			if(flag.equals("1")) {
 
-					script = 'docker build -t ' + image_name + ' .'
-					sh script
-					//Runs scan here
-					//archiveArtifacts artifacts: "**/trivy-scan.json"
+				if(!config.Image_Name) {
+					image_name = "vuln-scan:trivy"
+					println "No image name was provided. Default image name to be scanned is, " + image_name
 				}
-				else
-					println "Dockerfile does not exist"
+
+				if(!config.Break_Build) {
+					println "Selected default break build setting: Do not break build"
+					break_build = 0
+				}
+
+				if(!config.Severity) {
+					println "Selected default severity setting: High and Critical"
+					severity = "HIGH,CRITICAL"
+				}
+
+				script = 'docker build -t ' + image_name + ' .'
+				sh script
+				//Runs scan here
+				//archiveArtifacts artifacts: "**/trivy-scan.json"
 			}
-			
 			else
-				println "Trivy Image Scanning was opted out." 
+				println "Info: Dockerfile does not exist. Trivy scanning will be skipped."
 		}
     	}
 }
