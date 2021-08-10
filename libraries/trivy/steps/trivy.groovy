@@ -20,7 +20,9 @@ void call() {
 				//println "File Present: " + flag
 				//sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
 				//sh "ls -la"
-				flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
+				//flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
+				
+				flag = sh(script: "test -e Dockerfile", returnStdout: true)
 				println "value of flag is: "+flag
 				if(flag==1) {
 					println "Dockerfile exists"
