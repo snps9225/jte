@@ -16,27 +16,34 @@ void call() {
 				unstash name: 'maven_build'  
 				//sh "pwd"
 				//sh "ls -la"
-				flag = sh "find -name Dockerfile"
-				println "File Present: " + flag
-				if(!config.Image_Name) {
-					image_name = "vuln-scan:trivy"
-					println "No image name was provided. Default image name to be scanned is, " + image_name
-				}
-
-				if(!config.Break_Build) {
-					println "Selected default break build setting: Do not break build"
-					break_build = 0
-				}
-
-				if(!config.Severity) {
-					println "Selected default severity setting: High and Critical"
-					severity = "HIGH,CRITICAL"
-				}
+				//flag = sh "find -name Dockerfile"
+				//println "File Present: " + flag
+				sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
+				if(flag) {
+					println "Dockerfile exists"
 				
-				script = 'docker build -t ' + image_name + ' .'
-				sh script
-				//Runs scan here
-				//archiveArtifacts artifacts: "**/trivy-scan.json"
+					if(!config.Image_Name) {
+						image_name = "vuln-scan:trivy"
+						println "No image name was provided. Default image name to be scanned is, " + image_name
+					}
+
+					if(!config.Break_Build) {
+						println "Selected default break build setting: Do not break build"
+						break_build = 0
+					}
+
+					if(!config.Severity) {
+						println "Selected default severity setting: High and Critical"
+						severity = "HIGH,CRITICAL"
+					}
+
+					script = 'docker build -t ' + image_name + ' .'
+					sh script
+					//Runs scan here
+					//archiveArtifacts artifacts: "**/trivy-scan.json"
+				}
+				else
+					println "Dockerfile does not exist"
 			}
 			
 			else
