@@ -12,7 +12,9 @@ void call() {
 			severity 	= config.Severity
 			
 			if(!config.Opt_In || config.Opt_In.toLowerCase() == 'yes') {
-			
+				unstash name: 'maven_build'  
+				sh "pwd"
+				sh "ls -la"
 				if(!config.Image_Name) {
 					image_name = "vuln-scan:trivy"
 					println "No image name was provided. Default image name to be scanned is, " + image_name
@@ -29,7 +31,6 @@ void call() {
 				}
 				
 				script = 'docker build -t ' + image_name + ' .'
-				unstash name: 'maven_build'  
 				sh script
 				//Runs scan here
 				//archiveArtifacts artifacts: "**/trivy-scan.json"
