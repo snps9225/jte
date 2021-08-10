@@ -14,7 +14,7 @@ void call() {
 			
 			unstash name: 'maven_build' 
 
-			test = "test -e Dockerfiles && echo \"1\" || echo \"0\""
+			test = "test -e Dockerfile && echo \"1\" || echo \"0\""
 			flag = sh(script: test, returnStdout: true).trim()
 
 			if(flag.equals("1")) {
