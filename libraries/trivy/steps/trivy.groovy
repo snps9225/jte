@@ -21,7 +21,7 @@ void call() {
 				//sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
 				//sh "ls -la"
 				flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
-				println flag
+				println "value of flag is: "+flag
 				if(flag==1) {
 					println "Dockerfile exists"
 				
