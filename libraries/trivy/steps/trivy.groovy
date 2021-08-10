@@ -23,7 +23,7 @@ void call() {
 				//sh "ls -la"
 				//flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
 				test = "test -e Dockerfile && echo \"1\" || echo \"0\""
-				flag = sh(script: test, returnStdout: true)
+				flag = sh(script: test, returnStdout: true).trim()
 				println "value of flag is:"+flag+":"
 				println flag.equals("1\n")
 				if(flag.equals("1\n")) {
