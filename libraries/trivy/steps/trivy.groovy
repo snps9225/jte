@@ -22,10 +22,10 @@ void call() {
 				//sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
 				//sh "ls -la"
 				//flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
-				test = "test -e Dockerfile && echo \"yes\" || echo \"no\""
+				test = "test -e Dockerfile && echo \"1\" || echo \"0\""
 				flag = sh(script: test, returnStdout: true)
 				println "value of flag is: "+flag
-				if(flag=="yes") {
+				if(flag.equals("1")) {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
