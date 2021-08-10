@@ -6,6 +6,7 @@ void call() {
 			String script 	= ""
 			int break_build = 0
 			String severity = ""
+			int flag	= 0
 			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
@@ -13,8 +14,10 @@ void call() {
 			
 			if(!config.Opt_In || config.Opt_In.toLowerCase() == 'yes') {
 				unstash name: 'maven_build'  
-				sh "pwd"
-				sh "ls -la"
+				//sh "pwd"
+				//sh "ls -la"
+				flag = sh "find -name Dockerfile"
+				println "File Present: " + flag
 				if(!config.Image_Name) {
 					image_name = "vuln-scan:trivy"
 					println "No image name was provided. Default image name to be scanned is, " + image_name
