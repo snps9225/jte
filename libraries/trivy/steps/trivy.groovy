@@ -25,8 +25,8 @@ void call() {
 				test = "test -e Dockerfile && echo \"1\" || echo \"0\""
 				flag = sh(script: test, returnStdout: true)
 				println "value of flag is:"+flag+":"
-				println flag.equals("1")
-				if(flag.equals("1")) {
+				println flag.equals("1\n")
+				if(flag.equals("1\n")) {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
