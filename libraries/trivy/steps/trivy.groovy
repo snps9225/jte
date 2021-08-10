@@ -6,6 +6,7 @@ void call() {
 			String script 	= ""
 			int break_build = 0
 			String severity = ""
+			int flag	= 0
 			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
@@ -19,7 +20,9 @@ void call() {
 				//println "File Present: " + flag
 				//sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
 				//sh "ls -la"
-				if(sh "test -e Dockerfile && echo \"1\" || echo \"0\"") {
+				flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
+				println flag
+				if(flag) {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
