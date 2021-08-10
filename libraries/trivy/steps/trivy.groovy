@@ -14,11 +14,11 @@ void call() {
 			if(!config.Opt_In || config.Opt_In.toLowerCase() == 'yes') {
 				unstash name: 'maven_build'  
 				//sh "pwd"
-				//sh "ls -la"
+				
 				//flag = sh "find -name Dockerfile"
 				//println "File Present: " + flag
 				sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
-				
+				sh "ls -la"
 				if(flag) {
 					println "Dockerfile exists"
 				
