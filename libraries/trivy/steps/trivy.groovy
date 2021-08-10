@@ -18,8 +18,8 @@ void call() {
 				//flag = sh "find -name Dockerfile"
 				//println "File Present: " + flag
 				sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
-				sh "ls -la"
-				if(flag) {
+				//sh "ls -la"
+				if(flag == 1) {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
