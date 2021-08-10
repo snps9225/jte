@@ -22,7 +22,7 @@ void call() {
 				//sh "ls -la"
 				flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
 				println flag
-				if(flag) {
+				if(flag==1) {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
