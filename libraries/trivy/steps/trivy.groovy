@@ -6,7 +6,8 @@ void call() {
 			String script 	= ""
 			int break_build = 0
 			String severity = ""
-			String flag	= ""
+			String test	= ""
+			int flag	= 0
 			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
@@ -21,10 +22,10 @@ void call() {
 				//sh "test -e Dockerfile && echo \"1\">flag || echo \"0\">flag"
 				//sh "ls -la"
 				//flag = sh "test -e Dockerfile && echo \"1\" || echo \"0\""
-				
-				flag = sh(script: "test -e Dockerfile && echo \"1\" || echo \"0\"", returnStdout: true)
+				test = "test -e Dockerfile && echo \"1\" || echo \"0\""
+				flag = Integer.parseInt(sh(script: test, returnStdout: true))
 				println "value of flag is: "+flag
-				if(flag=='1') {
+				if(flag==1) {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
