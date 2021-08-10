@@ -6,7 +6,7 @@ void call() {
 			String script 	= ""
 			int break_build = 0
 			String severity = ""
-			int flag	= 0
+			String flag	= ""
 			opt_in 		= config.Opt_In
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
@@ -24,7 +24,7 @@ void call() {
 				
 				flag = sh(script: "test -e Dockerfile", returnStdout: true)
 				println "value of flag is: "+flag
-				if(flag==1) {
+				if(flag=="1") {
 					println "Dockerfile exists"
 				
 					if(!config.Image_Name) {
