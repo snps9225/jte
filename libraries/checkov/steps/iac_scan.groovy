@@ -2,66 +2,71 @@
 void call() {
 	stage("IaC Scan: Checkov") {
 		node {
-            String format      = ""
-            String file        = "" 
-            String framework   = "" 
-            String baseline    = "" 
-            String incremental = ""  
-            String script      = ""
-            int flag           = 0
-      
-			      format 	    = config.Format
-            file        = config.File
-            framework   = config.Framework
-            baseline    = config.CreateBaseline 
-            incremental = config.UseBaseline 
-			      break_build	= config.Break_Build
-			
-            // unstash name: 'maven_build' 
+		    String format      = ""
+		    String file        = "" 
+		    String framework   = "" 
+		    String baseline    = "" 
+		    String incremental = ""
+		    String break_build = ""
+		    String script      = ""
+		    int flag           = 0
 
-            test = "find . -type f -name \'\*.\*\' | sed \'s|.\*\.||\' | sort -u > presence"
-            sh test
+		    format 	= config.Format
+		    file        = config.File
+		    framework   = config.Framework
+		    baseline    = config.CreateBaseline 
+		    incremental = config.UseBaseline 
+		    break_build	= config.Break_Build
 
-            def lines = presence.readLines()
-            lines.each { String line ->
-                if(line.contins("tf") || line.contins("yaml") || line.contins("yml")) {
-                    flag = 1
-                }
-            }
+		    // unstash name: 'maven_build' 
 
-            if(flag == 1) { 
+		    test = "find . -type f -name \'\*.\*\' | sed \'s|.\*\.||\' | sort -u > presence"
+		    sh test
 
-                if(!config.Format) {
-                    format = "json"
-                    println "No report format was provided. Default is: " + format
-                }
+		    def lines = presence.readLines()
+		    lines.each { String line ->
+			if(line.contins("tf") || line.contins("yaml") || line.contins("yml")) {
+			    flag = 1
+			}
+		    }
 
-                if(!config.File) {
-                  file = "iac-scan-results.json"  
-                  println "No report name was provided. Default is: " + file
-                }
+		    if(flag == 1) { 
 
-                if(!config.Framework) {
-                    framework = "all"
-                    println "No specific framework was selected. Default is: " + framework
-                }
-                
-                script = 'checkov --directory .'
-                script = script + ' --output ' + format + ' > ' + file
-                script = script + ' --framework ' + framework 
-              
-                if (!config.CreateBaseline || create_baseline.equals("yes")) {
-                    script = script + ' --create-baseline'
-                }
+			if(!config.Format) {
+			    format = "json"
+			    println "No report format was provided. Default is: " + format
+			}
 
-                if (use_baseline.equals("yes")) {
-                    script = script + ' --baseline'
-                }
+			if(!config.File) {
+			  file = "iac-scan-results.json"  
+			  println "No report name was provided. Default is: " + file
+			}
 
-                sh script
-            }
-            else 
-                println "Info: IaC files do not exist. Checkov scanning will be skipped."
-        }
-    }
+			if(!config.Framework) {
+			    framework = "all"
+			    println "No specific framework was selected. Default is: " + framework
+			}
+
+			script = 'checkov --directory .'
+			script = script + ' --output ' + format + ' > ' + file
+			script = script + ' --framework ' + framework 
+
+			if (!config.CreateBaseline || create_baseline.equals("yes")) {
+			    script = script + ' --create-baseline'
+			}
+
+			if (use_baseline.equals("yes")) {
+			    script = script + ' --baseline'
+			}
+			  
+			if (break_build.equals("yes")) {
+			    script = script + ' --hard-fail-on'
+			}
+
+			sh script
+		    }
+		    else 
+			println "Info: IaC files do not exist. Checkov scanning will be skipped."
+        	}
+    	}
 }
