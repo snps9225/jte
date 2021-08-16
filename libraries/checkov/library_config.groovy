@@ -2,7 +2,7 @@
 fields {
   optional {
     Format    = String
-    File      = String
+    Report    = String
     Framework = String
     Create_Baseline = String
     Use_Baseline    = String
