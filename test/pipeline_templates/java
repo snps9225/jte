@@ -2,7 +2,8 @@ on_commit {
     maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
     //whitesource.run("maven")
     //checkmarx()
-    trivy()
+    //trivy()
+    iac_scan()
 }
 
 on_pull_request {
