@@ -1,4 +1,3 @@
-  
 fields {
   optional {
     Format    = String
