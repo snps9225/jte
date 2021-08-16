@@ -18,7 +18,7 @@ void call() {
 		    incremental = config.Use_Baseline 
 		    break_build	= config.Break_Build
 
-		    // unstash name: 'maven_build' 
+		    unstash name: 'maven_build' 
 
 		    test = "find . -type f -name \'\*.\*\' | sed \'s|.\*\.||\' | sort -u > presence"
 		    sh test
