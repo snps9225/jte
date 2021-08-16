@@ -14,8 +14,8 @@ void call() {
 		    format 	= config.Format
 		    file        = config.File
 		    framework   = config.Framework
-		    baseline    = config.CreateBaseline 
-		    incremental = config.UseBaseline 
+		    baseline    = config.Create_Baseline 
+		    incremental = config.Use_Baseline 
 		    break_build	= config.Break_Build
 
 		    // unstash name: 'maven_build' 
@@ -51,7 +51,7 @@ void call() {
 			script = script + ' --output ' + format + ' > ' + file
 			script = script + ' --framework ' + framework 
 
-			if (!config.CreateBaseline || create_baseline.equals("yes")) {
+			if (!config.Create_Baseline || create_baseline.equals("yes")) {
 			    script = script + ' --create-baseline'
 			}
 
