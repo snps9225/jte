@@ -29,6 +29,8 @@ keywords {
    	}
 
 	@override trivy
+	
+	@override checkov
 
 	
 	/*git {
