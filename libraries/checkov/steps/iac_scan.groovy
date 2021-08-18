@@ -20,7 +20,7 @@ void call() {
 
 		    unstash name: 'maven_build' 
 
-		    test = "find . -type f -name \'\*.\*\' | sed \'s|.\*\.||\' | sort -u > presence"
+		    test = "find . -type f -name \'*.*\' | sed \'s|.*\.||\' | sort -u > presence"
 		    sh test
 
 		    def lines = presence.readLines()
