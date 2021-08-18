@@ -4,7 +4,6 @@ void call() {
 		node {
 			String format      = ""
 			String file        = "" 
-			String filepath    = ""
 			String framework   = "" 
 			String baseline    = "" 
 			String incremental = ""
@@ -61,7 +60,7 @@ void call() {
 			sh script
 			}
 			else 
-			println "Info: IaC files do not exist. Checkov scanning will be skipped."
+				println "Info: IaC files do not exist. Checkov scanning will be skipped."
         	}
     	}
 }
