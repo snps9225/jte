@@ -10,7 +10,7 @@ void call() {
 			String incremental = ""
 			String break_build = ""
 			String script      = ""
-			int flag           = 0
+			String flag        = ""
 
 			format 	= config.Format
 			file        = config.Report
@@ -21,11 +21,11 @@ void call() {
 
 			unstash name: 'maven_build' 
 
-			test = "if [[ -n \$(find . -name \'*.tf\') ]] || [[ -n \$(find . -name \'*.yaml\') ]] ; then echo 1; else echo 0; fi"
-			flag = sh(script: test, returnStdout: true)
+			test = "if [[ -n \$(find . -name \'*.tf\') ]] || [[ -n \$(find . -name \'*.yaml\') ]] ; then echo \'1\'; else echo \'0\'; fi"
+			flag = sh(script: test, returnStdout: true).trim()
 			println "Flag says: " + flag
 
-			if(flag == 1) { 
+			if(flag.equals("1")) { 
 
 			if(!config.Format) {
 			    format = "json"
