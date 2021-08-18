@@ -8,7 +8,7 @@ void call() {
     
 		phases	= config.maven.Phases
 		goals	= config.maven.Goals 
-		properties = config.maven.Properties
+		properties = config.maven.Maven_Properties
 		profiles = config.maven.Profile
 		stage_name = config.maven.Stage
     
