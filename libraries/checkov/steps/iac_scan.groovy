@@ -4,6 +4,7 @@ void call() {
 		node {
 		    String format      = ""
 		    String file        = "" 
+		    String filepath    = ""
 		    String framework   = "" 
 		    String baseline    = "" 
 		    String incremental = ""
@@ -29,8 +30,12 @@ void call() {
 			    flag = 1
 			}
 		    }*/
+		    
+		    filepath = sh "pwd"
+		    filepath = filepath + "presence"
+		    println filepath
 			
-		    new File("presence").eachLine { line ->
+		    new File(filepath).eachLine { line ->
 			    println line
 		    }
 
