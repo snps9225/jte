@@ -20,7 +20,7 @@ void call() {
 
 			unstash name: 'maven_build' 
 
-			test = "if [[ \$(find . -name \'*.tf\') ]] || [[ \$(find . -name \'*.yaml\') ]]; then echo \'1\'; else echo \'0\'; fi"
+			test = "if [[ -n \$(find . -name \'*.tf\') ]] || [[ -n \$(find . -name \'*.yaml\') ]]; then echo \'1\'; else echo \'0\'; fi"
 			flag = sh(script: test, returnStdout: true).trim()
 			println "Flag says: " + flag
 
