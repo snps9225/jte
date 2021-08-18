@@ -1,10 +1,10 @@
 fields { 
 	optional {
 		maven {	
-			Phases = ArrayList<String> 
-			Goals = ArrayList<String>
-			Properties = Map<String, String>
-			Profiles = ArrayList<String> 
+			Phases = ArrayList
+			Goals = ArrayList
+			Properties = Map
+			Profiles = ArrayList
 			Stage = String
 				
 			version = String
