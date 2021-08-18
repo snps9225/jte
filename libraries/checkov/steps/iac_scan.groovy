@@ -23,11 +23,15 @@ void call() {
 		    test = "find . -type f -name \'*.*\' | sed \'s|.*\\.||\' | sort -u > presence"
 		    sh test
 
-		    def lines = presence.readLines()
+		    /*def lines = presence.readLines()
 		    lines.each { String line ->
 			if(line.contins("tf") || line.contins("yaml") || line.contins("yml")) {
 			    flag = 1
 			}
+		    }*/
+			
+		    new File("presence").eachLine { line ->
+			    println line
 		    }
 
 		    if(flag == 1) { 
