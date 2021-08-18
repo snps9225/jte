@@ -3,7 +3,7 @@ fields {
 		maven {	
 			Phases = ArrayList
 			Goals = ArrayList
-			Properties = Map
+			Maven_Properties = Map
 			Profiles = ArrayList
 			Stage = String
 				
