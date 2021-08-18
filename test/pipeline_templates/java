@@ -1,6 +1,6 @@
 on_commit {
-    build()
-    //maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
+    //build()
+    maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
     //sca.run("maven")
     //sast()
     //trivy()
