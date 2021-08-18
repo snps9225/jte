@@ -12,7 +12,7 @@ void call() {
 		    int flag           = 0
 
 		    format 	= config.Format
-		    file        = config.File
+		    file        = config.Report
 		    framework   = config.Framework
 		    baseline    = config.Create_Baseline 
 		    incremental = config.Use_Baseline 
