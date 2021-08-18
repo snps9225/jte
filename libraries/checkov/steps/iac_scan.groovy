@@ -2,44 +2,30 @@
 void call() {
 	stage("IaC Scan: Checkov") {
 		node {
-		    String format      = ""
-		    String file        = "" 
-		    String filepath    = ""
-		    String framework   = "" 
-		    String baseline    = "" 
-		    String incremental = ""
-		    String break_build = ""
-		    String script      = ""
-		    int flag           = 0
+			String format      = ""
+			String file        = "" 
+			String filepath    = ""
+			String framework   = "" 
+			String baseline    = "" 
+			String incremental = ""
+			String break_build = ""
+			String script      = ""
+			int flag           = 0
 
-		    format 	= config.Format
-		    file        = config.Report
-		    framework   = config.Framework
-		    baseline    = config.Create_Baseline 
-		    incremental = config.Use_Baseline 
-		    break_build	= config.Break_Build
+			format 	= config.Format
+			file        = config.Report
+			framework   = config.Framework
+			baseline    = config.Create_Baseline 
+			incremental = config.Use_Baseline 
+			break_build	= config.Break_Build
 
-		    unstash name: 'maven_build' 
+			unstash name: 'maven_build' 
 
-		    test = "find . -type f -name \'*.*\' | sed \'s|.*\\.||\' | sort -u > presence"
-		    sh test
+			test = "if [[ -n \$(find . -name \'*.tf\') ]] || [[ -n \$(find . -name \'*.yaml\') ]] ; then echo 1; else echo 0; fi"
+			flag = sh(script: test, returnStdout: true).trim()
+			println flag
 
-		    /*def lines = presence.readLines()
-		    lines.each { String line ->
-			if(line.contins("tf") || line.contins("yaml") || line.contins("yml")) {
-			    flag = 1
-			}
-		    }*/
-		    
-		    filepath = sh "pwd"
-		    filepath = filepath + "presence"
-		    println filepath
-			
-		    new File(filepath).eachLine { line ->
-			    println line
-		    }
-
-		    if(flag == 1) { 
+			if(flag == 1) { 
 
 			if(!config.Format) {
 			    format = "json"
@@ -67,14 +53,14 @@ void call() {
 			if (use_baseline.equals("yes")) {
 			    script = script + ' --baseline'
 			}
-			  
+
 			if (break_build.equals("yes")) {
 			    script = script + ' --hard-fail-on'
 			}
 
 			sh script
-		    }
-		    else 
+			}
+			else 
 			println "Info: IaC files do not exist. Checkov scanning will be skipped."
         	}
     	}
