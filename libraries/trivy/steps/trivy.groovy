@@ -14,10 +14,10 @@ void call() {
 			
 			unstash name: 'maven_build' 
 
-			test = "test -e Dockerfile && echo \"1\" || echo \"0\""
+			test = "test -e Dockerfile && echo 0 || echo 1"
 			flag = sh(script: test, returnStdout: true).trim()
 
-			if(flag.equals("1")) {
+			if(flag.equals("0")) {
 
 				if(!config.Image_Name) {
 					image_name = "vuln-scan:trivy"
