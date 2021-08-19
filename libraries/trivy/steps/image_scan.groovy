@@ -15,7 +15,7 @@ void call() {
 			
 			flag = sh(script: '''
 			touch presence
-			find . -type f -name 'Dockerfile' | sed \'s|\(.*\)/.*|\1|\' | sort -u >> presence
+			find . -type f -name 'Dockerfile' | sed \'s|\\(.*\\)/.*|\\1|\' | sort -u >> presence
 			[ -s presence ] && echo 0 || echo 1
 			''', returnStdout: true).trim()
 			
