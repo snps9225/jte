@@ -47,7 +47,7 @@ void call() {
 
 				script = 'docker run -t --name checkov -v /user/tf:/tf bridgecrew/checkov /tf '
 				script = script + ' --output ' + format
-				script = script + ' \> ' + file
+				script = script + " > " + file
 				script = script + ' --framework ' + framework 
 
 				if (!config.Create_Baseline || create_baseline.equals("yes")) {
