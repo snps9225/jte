@@ -45,7 +45,7 @@ void call() {
 					println "No specific framework was selected. Default is: " + framework
 				}
 
-				script = 'checkov --directory .'
+				script = 'docker run -t -v /user/tf:/tf bridgecrew/checkov -d /tf '
 				script = script + ' --output ' + format
 				script = script + ' > ' + file
 				script = script + ' --framework ' + framework 
