@@ -6,7 +6,7 @@ void call() {
 			String file        = "" 
 			String framework   = "" 
 			String baseline    = "" 
-			String incremental = ""
+			String use_baseline= ""
 			String script      = ""
 			String flag        = ""
 
