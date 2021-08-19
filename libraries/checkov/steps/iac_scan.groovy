@@ -7,7 +7,6 @@ void call() {
 			String framework   = "" 
 			String baseline    = "" 
 			String incremental = ""
-			String break_build = ""
 			String script      = ""
 			String flag        = ""
 
@@ -16,14 +15,13 @@ void call() {
 			framework   = config.Framework
 			baseline    = config.Create_Baseline 
 			use_baseline= config.Use_Baseline 
-			break_build = config.Break_Build
 
 			unstash name: 'maven_build' 
 			
 			flag = sh(script: '''
 			touch presence
-			find . -type f -name \'*.tf\' | sed \'s|.*\\.||\' | sort -u >> presence
-			find . -type f -name \'*.yaml\' | sed \'s|.*\\.||\' | sort -u >> presence
+			find . -type f -name \'*.taf\' | sed \'s|.*\\.||\' | sort -u >> presence
+			find . -type f -name \'*.yaaml\' | sed \'s|.*\\.||\' | sort -u >> presence
 			[ -s presence ] && echo 0 || echo 1
 			''', returnStdout: true).trim()
 			
@@ -57,15 +55,10 @@ void call() {
 				if (use_baseline.equals("yes")) {
 					script = script + ' --baseline'
 				}
-
-				if (break_build.equals("yes")) {
-					//Check the feature
-					//script = script + ' --hard-fail-on'
-				}
 				
 				def statusCode = sh script:script, returnStatus:true
 				
-				archiveArtifacts artifacts: "**/${file}", allowEmptyArchive: true
+				archiveArtifacts artifacts: "**/${file}"
 				
 				sh 'docker rm checkov'
 			}
