@@ -1,5 +1,5 @@
 void call() {
-	stage("Trivy: Image Scan") {
+	stage("Image Scan: Trivy") {
 		node {
 			String image_name = ""
 			String script 	= ""
