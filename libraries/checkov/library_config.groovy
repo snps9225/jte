@@ -5,6 +5,5 @@ fields {
     Framework = String
     Create_Baseline = String
     Use_Baseline    = String
-    Break_Build     = String
   }
 }
