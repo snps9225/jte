@@ -42,9 +42,9 @@ void call() {
 				}
 				
 				String [] lines = readFile("presence").split(System.getProperty("line.separator"));
-				while (lines.hasNext()){
-				    println "Value: " + lines.next()
-			
+				int index = 0
+				while (index < lines.length){
+				    println "Value: " + lines[index]			
 				}
 				script = 'docker build -t ' + image_name + ' .'
 				//def statusCode = sh script:script, returnStatus:true
