@@ -41,7 +41,7 @@ void call() {
 					severity = "HIGH,CRITICAL"
 				}
 				
-				Scanner s = new Scanner(new File("./presence"))
+				Scanner s = new Scanner(new File("/var/lib/jenkins/workspace/insecure-bank-mbp_develop"))
 				ArrayList<String> list = new ArrayList<String>()
 				while (s.hasNext()){
 				    println "Value: " + s.next()
