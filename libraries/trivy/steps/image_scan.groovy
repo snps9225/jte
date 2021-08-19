@@ -41,7 +41,7 @@ void call() {
 					severity = "HIGH,CRITICAL"
 				}
 				
-				Scanner s = new Scanner(new File("presence"))
+				Scanner s = new Scanner(new File("./presence"))
 				ArrayList<String> list = new ArrayList<String>()
 				while (s.hasNext()){
 				    println "Value: " + s.next()
