@@ -47,7 +47,7 @@ void call() {
 
 				script = 'docker run -t --name checkov -v /var/lib/jenkins/workspace/insecure-bank-mbp_develop:/tf bridgecrew/checkov --directory /tf '
 				script = script + ' --output ' + format
-				script = script + ' > ' + file
+				script = script + ' | tee -a ' + file
 				script = script + ' --framework ' + framework 
 
 				if (!config.Create_Baseline || create_baseline.equals("yes")) {
@@ -62,8 +62,11 @@ void call() {
 					//Check the feature
 					//script = script + ' --hard-fail-on'
 				}
-
-				sh script
+				
+				def statusCode = sh script:script, returnStatus:true
+				if(statusCode==0) {
+					archiveArtifacts artifacts: "**/${file}.json"
+				}
 				sh 'docker rm checkov'
 			}
 			else 
