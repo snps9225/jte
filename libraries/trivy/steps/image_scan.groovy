@@ -47,10 +47,10 @@ void call() {
 					println "trivy image --format json -o image-scan-${scanID}-.json --ignore-unfixed --no-progress --exit-code ${break_build} --severity ${severity} ${image_name}"
 					sh "docker rmi \"${image_name}\""
 					
+					//archiveArtifacts artifacts: "**/trivy-scan.json"
 					index++
 					scanID++
 				}
-				//archiveArtifacts artifacts: "**/trivy-scan.json"
 				sh 'rm presence'
 			}
 			else
