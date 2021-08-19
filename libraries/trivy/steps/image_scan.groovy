@@ -6,7 +6,7 @@ void call() {
 			int break_build = 0
 			String severity = ""
 			String flag	= ""
-			String get	= ""
+			//String get	= ""
 			
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
@@ -41,13 +41,11 @@ void call() {
 					severity = "HIGH,CRITICAL"
 				}
 				
-				get = readFile("presence")
-				//Scanner s = new Scanner(new File("/var/lib/jenkins/workspace/insecure-bank-mbp_develop"))
-				//ArrayList<String> list = new ArrayList<String>()
-				//while (readFile("presence").next()){
-				    println "Value: " + get
+				String [] lines = readFile("presence").split(System.getProperty("line.separator"));
+				while (lines.hasNext()){
+				    println "Value: " + lines.next()
 			
-				
+				}
 				script = 'docker build -t ' + image_name + ' .'
 				//def statusCode = sh script:script, returnStatus:true
 	
