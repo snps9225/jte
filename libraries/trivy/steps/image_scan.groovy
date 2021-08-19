@@ -44,13 +44,18 @@ void call() {
 				String [] lines = readFile("presence").split(System.getProperty("line.separator"));
 				int index = 0
 				while (index < lines.length){
-			    		println "Value: " + lines[index]
+			    		//println "Value: " + lines[index]
 					script = 'docker build -t ' + image_name + ' ' + lines[index]
 					println script
+					def statusCode = sh script:script, returnStatus:true
+					println statusCode
+					println "trivy image --format json -o image-scan-"+index+"-.json --ignore-unfixed --no-progress --exit-code ${break_build} --severity " + severity + " " + image_name
+					sh 'docker rmi ' + image_name
+					
 					index++;
 				}
 				script = 'docker build -t ' + image_name + ' .'
-				//def statusCode = sh script:script, returnStatus:true
+				
 	
 				//sh script
 				
