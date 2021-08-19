@@ -45,6 +45,8 @@ void call() {
 				int index = 0
 				while (index < lines.length){
 			    		println "Value: " + lines[index]
+					script = 'docker build -t ' + image_name + ' ' + lines[index]
+					println script
 					index++;
 				}
 				script = 'docker build -t ' + image_name + ' .'
