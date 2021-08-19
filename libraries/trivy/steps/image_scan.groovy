@@ -3,10 +3,11 @@ void call() {
 		node {
 			String image_name = ""
 			String script 	= ""
-			int break_build = 0
 			String severity = ""
 			String flag	= ""
-			//String get	= ""
+			int break_build = 0
+			int index	= 0
+			int scanID 	= 1
 			
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
@@ -38,8 +39,7 @@ void call() {
 				}
 				
 				String [] lines = readFile("presence").split(System.getProperty("line.separator"));
-				int index = 0
-				int scanID = index + 1
+
 				while (index < lines.length){
 					script = "docker build -t \"${image_name}\" \"${lines[index]}\""
 					def statusCode = sh script:script, returnStatus:true
