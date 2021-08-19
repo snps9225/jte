@@ -46,7 +46,8 @@ void call() {
 				}
 
 				script = 'checkov --directory .'
-				script = script + ' --output ' + format + ' > ' + file
+				script = script + ' --output ' + format
+				script = script + ' > ' + file
 				script = script + ' --framework ' + framework 
 
 				if (!config.Create_Baseline || create_baseline.equals("yes")) {
