@@ -19,10 +19,6 @@ void call() {
 			find . -type f -name 'Dockerfile' | sed \'s|\\(.*\\)/.*|\\1|\' | sort -u >> presence
 			[ -s presence ] && echo 0 || echo 1
 			''', returnStdout: true).trim()
-	
-			
-			//test = "test -e Dockerfile && echo 0 || echo 1"
-			//flag = sh(script: test, returnStdout: true).trim()
 
 			if(flag.equals("0")) {
 
@@ -43,22 +39,17 @@ void call() {
 				
 				String [] lines = readFile("presence").split(System.getProperty("line.separator"));
 				int index = 0
+				int scanID = index + 1
 				while (index < lines.length){
-			    		//println "Value: " + lines[index]
-					script = 'docker build -t ' + image_name + ' ' + lines[index]
-					println script
+					script = "docker build -t \"${image_name}\" \"${lines[index]}\""
 					def statusCode = sh script:script, returnStatus:true
-					println statusCode
-					println "trivy image --format json -o image-scan-"+index+"-.json --ignore-unfixed --no-progress --exit-code ${break_build} --severity " + severity + " " + image_name
-					sh 'docker rmi ' + image_name
+
+					println "trivy image --format json -o image-scan-${scanID}-.json --ignore-unfixed --no-progress --exit-code ${break_build} --severity ${severity} ${image_name}"
+					sh "docker rmi \"${image_name}\""
 					
-					index++;
+					index++
+					scanID++
 				}
-				script = 'docker build -t ' + image_name + ' .'
-				
-	
-				//sh script
-				
 				//archiveArtifacts artifacts: "**/trivy-scan.json"
 				sh 'rm presence'
 			}
