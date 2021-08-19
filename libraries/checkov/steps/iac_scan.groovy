@@ -45,9 +45,9 @@ void call() {
 					println "No specific framework was selected. Default is: " + framework
 				}
 
-				script = 'docker run -t -v /user/tf:/tf bridgecrew/checkov -d /tf '
+				script = 'docker run -t -v /user/tf:/tf bridgecrew/checkov /tf '
 				script = script + ' --output ' + format
-				script = script + ' > ' + file
+				script = script + ' \> ' + file
 				script = script + ' --framework ' + framework 
 
 				if (!config.Create_Baseline || create_baseline.equals("yes")) {
