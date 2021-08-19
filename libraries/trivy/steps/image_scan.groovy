@@ -18,8 +18,7 @@ void call() {
 			find . -type f -name 'Dockerfile' | sed \'s|\\(.*\\)/.*|\\1|\' | sort -u >> presence
 			[ -s presence ] && echo 0 || echo 1
 			''', returnStdout: true).trim()
-			
-			sh 'rm presence'
+	
 			
 			//test = "test -e Dockerfile && echo 0 || echo 1"
 			//flag = sh(script: test, returnStdout: true).trim()
@@ -54,6 +53,7 @@ void call() {
 				//sh script
 				
 				//archiveArtifacts artifacts: "**/trivy-scan.json"
+				sh 'rm presence'
 			}
 			else
 				println "Info: Dockerfile does not exist. Trivy scanning will be skipped."
