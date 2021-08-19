@@ -20,8 +20,8 @@ void call() {
 			
 			flag = sh(script: '''
 			touch presence
-			find . -type f -name \'*.taf\' | sed \'s|.*\\.||\' | sort -u >> presence
-			find . -type f -name \'*.yaaml\' | sed \'s|.*\\.||\' | sort -u >> presence
+			find . -type f -name \'*.tf\' | sed \'s|.*\\.||\' | sort -u >> presence
+			find . -type f -name \'*.yaml\' | sed \'s|.*\\.||\' | sort -u >> presence
 			[ -s presence ] && echo 0 || echo 1
 			''', returnStdout: true).trim()
 			
