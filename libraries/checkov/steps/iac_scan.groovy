@@ -19,16 +19,17 @@ void call() {
 			break_build	= config.Break_Build
 
 			unstash name: 'maven_build' 
+			
+			flag = sh(script: '''
+			touch presence
+			find . -type f -name \'*.tf\' | sed \'s|.*\\.||\' | sort -u >> presence
+			find . -type f -name \'*.yaml\' | sed \'s|.*\\.||\' | sort -u >> presence
+			[ -s presence ] && echo 0 || echo 1
+			''', returnStdout: true).trim()
+			
+			sh 'rm presence'
 
-			/*test = "if [[ -n \$(find . -name \'*.tf\') ]] || [[ -n \$(find . -name \'*.yaml\') ]]; then echo \'1\'; else echo \'0\'; fi"
-			flag = sh(script: test, returnStdout: true).trim()
-			*/
-			sh '''
-			if [[ -n \$(find . -name \'*.tf\') ]] || [[ -n \$(find . -name \'*.yaml\') ]]; then echo \'1\'; else echo \'0\'; fi
-			'''
-			println "Flag says: " + flag
-
-			if(flag.equals("1")) { 
+			if(flag.equals("0")) { 
 
 			if(!config.Format) {
 			    format = "json"
