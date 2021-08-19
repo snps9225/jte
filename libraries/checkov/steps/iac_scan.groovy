@@ -11,12 +11,12 @@ void call() {
 			String script      = ""
 			String flag        = ""
 
-			format 	= config.Format
-			file        = config.Report
+			format	= config.Format
+			file    = config.Report
 			framework   = config.Framework
 			baseline    = config.Create_Baseline 
-			incremental = config.Use_Baseline 
-			break_build	= config.Break_Build
+			use_baseline= config.Use_Baseline 
+			break_build = config.Break_Build
 
 			unstash name: 'maven_build' 
 			
@@ -30,39 +30,39 @@ void call() {
 			sh 'rm presence'
 
 			if(flag.equals("0")) { 
+				if(!config.Format) {
+					format = "json"
+				    	println "No report format was provided. Default is: " + format
+				}
 
-			if(!config.Format) {
-			    format = "json"
-			    println "No report format was provided. Default is: " + format
-			}
+				if(!config.File) {
+					file = "iac-scan-results.json"  
+					println "No report name was provided. Default is: " + file
+				}
 
-			if(!config.File) {
-			  file = "iac-scan-results.json"  
-			  println "No report name was provided. Default is: " + file
-			}
+				if(!config.Framework) {
+					framework = "all"
+					println "No specific framework was selected. Default is: " + framework
+				}
 
-			if(!config.Framework) {
-			    framework = "all"
-			    println "No specific framework was selected. Default is: " + framework
-			}
+				script = 'checkov --directory .'
+				script = script + ' --output ' + format + ' > ' + file
+				script = script + ' --framework ' + framework 
 
-			script = 'checkov --directory .'
-			script = script + ' --output ' + format + ' > ' + file
-			script = script + ' --framework ' + framework 
+				if (!config.Create_Baseline || create_baseline.equals("yes")) {
+					script = script + ' --create-baseline'
+				}
 
-			if (!config.Create_Baseline || create_baseline.equals("yes")) {
-			    script = script + ' --create-baseline'
-			}
+				if (use_baseline.equals("yes")) {
+					script = script + ' --baseline'
+				}
 
-			if (use_baseline.equals("yes")) {
-			    script = script + ' --baseline'
-			}
+				if (break_build.equals("yes")) {
+					//Check the feature
+					//script = script + ' --hard-fail-on'
+				}
 
-			if (break_build.equals("yes")) {
-			    script = script + ' --hard-fail-on'
-			}
-
-			sh script
+				sh script
 			}
 			else 
 				println "Info: IaC files do not exist. Checkov scanning will be skipped."
