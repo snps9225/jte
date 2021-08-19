@@ -1,21 +1,28 @@
 void call() {
 	stage("Trivy: Image Scan") {
 		node {
-			String opt_in	= ""
 			String image_name = ""
 			String script 	= ""
 			int break_build = 0
 			String severity = ""
-			String test	= ""
 			String flag	= ""
+			
 			image_name 	= config.Image_Name 
 			break_build	= config.Break_Build
 			severity 	= config.Severity
 			
 			unstash name: 'maven_build' 
-
-			test = "test -e Dockerfile && echo 0 || echo 1"
-			flag = sh(script: test, returnStdout: true).trim()
+			
+			flag = sh(script: '''
+			touch presence
+			find . -type f -name 'Dockerfile' | sed \'s|\(.*\)/.*|\1|\' | sort -u >> presence
+			[ -s presence ] && echo 0 || echo 1
+			''', returnStdout: true).trim()
+			
+			sh 'rm presence'
+			
+			//test = "test -e Dockerfile && echo 0 || echo 1"
+			//flag = sh(script: test, returnStdout: true).trim()
 
 			if(flag.equals("0")) {
 
@@ -33,10 +40,19 @@ void call() {
 					println "Selected default severity setting: High and Critical"
 					severity = "HIGH,CRITICAL"
 				}
-
+				
+				Scanner s = new Scanner(new File("presence"))
+				ArrayList<String> list = new ArrayList<String>()
+				while (s.hasNext()){
+				    println "Value: " + s.next()
+				}
+				s.close()
+				
 				script = 'docker build -t ' + image_name + ' .'
-				sh script
-				//Runs scan here
+				//def statusCode = sh script:script, returnStatus:true
+	
+				//sh script
+				
 				//archiveArtifacts artifacts: "**/trivy-scan.json"
 			}
 			else
