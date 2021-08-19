@@ -45,7 +45,7 @@ void call() {
 					println "No specific framework was selected. Default is: " + framework
 				}
 
-				script = 'docker run -t -v /user/tf:/tf bridgecrew/checkov /tf '
+				script = 'docker run -t --name checkov -v /user/tf:/tf bridgecrew/checkov /tf '
 				script = script + ' --output ' + format
 				script = script + ' \> ' + file
 				script = script + ' --framework ' + framework 
@@ -64,6 +64,7 @@ void call() {
 				}
 
 				sh script
+				sh 'docker rm checkov'
 			}
 			else 
 				println "Info: IaC files do not exist. Checkov scanning will be skipped."
