@@ -64,10 +64,9 @@ void call() {
 				}
 				
 				def statusCode = sh script:script, returnStatus:true
-				println "Status code: " + statusCode
-				if(statusCode==0) {
-					archiveArtifacts artifacts: "**/${file}.json"
-				}
+				
+				archiveArtifacts artifacts: "**/${file}.json", allowEmptyArchive: true
+				
 				sh 'docker rm checkov'
 			}
 			else 
