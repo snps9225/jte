@@ -3,8 +3,8 @@ on_commit {
     maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
     //sca.run("maven")
     //sast()
-    //image_scan()
-    iac_scan()
+    image_scan()
+    //iac_scan()
 }
 
 on_pull_request {
