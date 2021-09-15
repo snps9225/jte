@@ -1,8 +1,9 @@
 on_commit {
+    code_scan
     //build()
     //maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
     //sca.run("maven")
-    sast()
+    //sast()
     //image_scan()
     //iac_scan()
 }
