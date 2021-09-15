@@ -1,0 +1,15 @@
+on_commit {
+    //maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
+    //sca.run("maven")
+    //sast()
+}
+
+on_pull_request {
+    //maven.run(["clean"],properties:["skipTests":"true"],"on_pull_request")
+    //sca.run("maven")
+    //sast()
+}
+
+on_merge {
+    //maven.run(["clean"],properties:["skipTests":"true"],"on_merge")
+}
