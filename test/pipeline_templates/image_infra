@@ -1,0 +1,15 @@
+
+on_commit {
+    //image_scan()
+    //iac_scan()
+}
+
+on_pull_request {
+    //image_scan()
+    //iac_scan()
+}
+
+on_merge {
+    //image_scan()
+    //iac_scan()
+}
