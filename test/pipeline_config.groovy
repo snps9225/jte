@@ -40,10 +40,3 @@ keywords {
      		source_type = "github"
   	}
 }
-
-stages {
-	code_scan {
-		sca.run
-		sast
-	}
-}
