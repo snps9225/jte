@@ -43,7 +43,7 @@ keywords {
 
 stages {
 	code_scan {
-		sca
+		sca.run
 		sast
 	}
 }
