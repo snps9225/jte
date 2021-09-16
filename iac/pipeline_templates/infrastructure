@@ -1,0 +1,11 @@
+on_commit {
+    iac_scan()
+}
+
+on_pull_request {
+    //iac_scan()
+}
+
+on_merge {
+    //iac_scan()
+}
