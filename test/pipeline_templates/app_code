@@ -1,6 +1,6 @@
 on_commit {
-    //maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
-    //sca.run("maven")
+    maven.run(["clean"],properties:["skipTests":"true"],"on_commit-test")
+    sca.run("maven")
     //sast()
 }
 
