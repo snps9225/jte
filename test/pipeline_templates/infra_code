@@ -1,6 +1,6 @@
 
 on_commit {
-    //iac_scan()
+    iac_scan()
 }
 
 on_pull_request {
