@@ -1,0 +1,11 @@
+on_commit {
+    image_scan()
+}
+
+on_pull_request {
+    image_scan()
+}
+
+on_merge {
+    image_scan()
+}
