@@ -1,8 +1,8 @@
 on_commit to: develop, {
-    maven.run(["clean","package"],properties:["skipTests":"true"],"on_commit")
+    //maven.run(["clean","package"],properties:["skipTests":"true"],"on_commit")
     //whitesource.run("maven")
-    //checkmarx() 
-    trivy()
+    checkmarx() 
+    //trivy()
 }
 
 on_pull_request to: develop, {
